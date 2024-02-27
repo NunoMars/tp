@@ -1,0 +1,31 @@
+{% extends 'base.html'%}
+{% load static %}
+{% load i18n %}
+
+{% block title %}<title>{{card_name}}</title>{% endblock %}
+<style>
+    .imagefloat {
+        float: left;
+        margin: 40px;
+    }
+</style>
+{% block body %}
+
+<!-- Card detail-->
+<section class="container" id="card_deck">        
+    <div class="row-md mx-auto justify-content-center align-items-center text-center">
+        <h1>{{card_name}}</h1>
+    </div>       
+    <div class="row-md mx-auto justify-content-center text-white align-items-center text-center">                                                
+        <div><img class="imagefloat pull-left rounded" width="30%" src="{{card_image.url}}" alt="{{card_name}}"></div>
+            {{card_signification_gen}}
+            <h3>Les aspects negatifs de {{card_name}}</h3>
+            {{card_signification_warnings}}
+            <h3>{{card_name}} en amour:</h3>
+            <p>{{card_signification_love}}</p>
+            <h3>{{card_name}} au Travail</h3>
+            <p>{{card_signification_work}}</p> 
+        </div>     
+    </div>
+</section>
+{% endblock body %}

@@ -1,0 +1,15 @@
+{
+    "python.pythonPath": "venv\\Scripts\\pythonw.exe",
+    "git.ignoreLimitWarning": true,
+    "cSpell.words": [
+        "capitalize",
+        "inner",
+        "onmouseover",
+        "randint",
+        "rounded"
+    ],
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    "python.formatting.provider": "none"
+}

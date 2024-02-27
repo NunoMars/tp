@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: "{{ .Release.Name }}-back-service"
+  namespace: {{ .Values.namespace }}
+  labels: 
+    app: "{{ .Release.Name }}-back-deployment"
+spec:
+  selector:    
+    app: "{{ .Release.Name }}-back-deployment"
+  type: ClusterIP
+  ports:
+  - name: "5000"
+    port: 5000
+    protocol: TCP
+    targetPort: 5000
+status:
+  loadBalancer: {}

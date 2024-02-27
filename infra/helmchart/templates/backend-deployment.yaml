@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Release.Name }}-back-deployment" # Name of the deployment with the release name
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: "{{ .Release.Name }}-back-deployment"
+  template:
+    metadata:
+      labels:
+        app: "{{ .Release.Name }}-back-deployment"
+    spec:
+      volumes:
+        - name: "{{ .Release.Name }}-pvc"
+          persistentVolumeClaim:
+            claimName: "{{ .Release.Name }}-pvc"
+      containers:
+      - name: "{{ .Release.Name }}-back-container" # Name of the container with the release name
+        image: nunoloupy/{{ .Values.backendlabel }}:latest
+        ports:
+          - containerPort: 5000
+        volumeMounts:
+          - name: "{{ .Release.Name }}-pvc"
+            mountPath: /app/data
+        resources: 
+          requests:
+            cpu: 50m
+            memory: 32Mi
+          limits:
+            cpu: 200m
+            memory: 64Mi
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 5000
+          initialDelaySeconds: 10
+          periodSeconds: 5
+status: {}
