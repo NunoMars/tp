@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Release.Name }}-nginx-deployment"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "{{ .Release.Name }}-nginx-deployment"
+  template:
+    metadata:
+      labels:
+        app: "{{ .Release.Name }}-nginx-deployment"
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: "{{ .Release.Name }}-cm"
+          mountPath: /etc/nginx/nginx.conf
+          subPath: nginx.conf
+      volumes:
+      - name: "{{ .Release.Name }}-cm"
+        configMap:
+          name: nginx-config

@@ -24,7 +24,7 @@ spec:
           - containerPort: 5000
         volumeMounts:
           - name: "{{ .Release.Name }}-pvc"
-            mountPath: /app/data
+            mountPath: /app/saticfiles
         resources: 
           requests:
             cpu: 50m

@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Release.Name }}-postgresql"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "{{ .Release.Name }}-postgresql"
+  template:
+    metadata:
+      labels:
+        app: "{{ .Release.Name }}-postgresql"
+    spec:
+      containers:
+      - name: postgresql
+        image: postgres:latest
+        ports:
+        - containerPort: 5432
+        envFrom:
+        - secretRef:
+            name: "{{ .Release.Name }}-postgresql-credentials"
+        volumeMounts:
+        - name: "{{ .Release.Name }}-postgresql-data-pvc"
+          mountPath: /var/lib/postgresql/data
+      volumes:
+      - name: "{{ .Release.Name }}-postgresql-data-pvc"
+        persistentVolumeClaim:
+          claimName: postgresql-data-pvc

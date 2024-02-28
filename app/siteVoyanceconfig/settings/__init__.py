@@ -106,6 +106,8 @@ WSGI_APPLICATION = "siteVoyanceconfig.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+DB_HOST = os.environ.get("DB_HOST")
+
 DATABASES = (
     {
         "default": {
@@ -113,7 +115,7 @@ DATABASES = (
             "NAME": "lastProject",
             "USER": "Nuno",
             "PASSWORD": "bcxau9p^^123.",
-            "HOST": "127.0.0.1",
+            "HOST": DB_HOST,
             "PORT": "5432",
         }
     }
