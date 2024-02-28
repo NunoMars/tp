@@ -2,7 +2,7 @@ name: Build and push images to GitHub Container Registry
 on:
   workflow_dispatch:
   workflow_run:
-    workflows: ["Run python code tets"]
+    workflows: ["Code scan for the Tarot App"]
     branches: [main, dev]
     types:
       - completed 
