@@ -27,4 +27,5 @@ jobs:
 
     - name: Run tests
       run: |
-        ./app/manage.py test
+        cd app
+        ./manage.py test
