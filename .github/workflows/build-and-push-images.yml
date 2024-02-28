@@ -1,13 +1,15 @@
 name: Build and push images to GitHub Container Registry
 on:
   workflow_dispatch:
-  pull_request:
-  push:
-    branches: # Specify your branches here
-      - main # The 'main' branch
-      - dev # The release branches
+  workflow_run:
+    workflows: ["Run python code tets"]
+    branches: [main, dev]
+    types:
+      - completed 
+
 jobs:
-  build-and-push-image:    
+  build-and-push-image:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}# Only run if the tests workflow was successful    
     env:
       ENVIRONMENT: ${{ github.ref == 'refs/heads/main' && 'prod' || 'dev' }}
     runs-on: ubuntu-latest
