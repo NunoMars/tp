@@ -1,0 +1,9 @@
+app/__pycache__
+app/*.pyc
+app/*.pyo
+app/*.pyd
+app/venv
+app/tests
+app/requirements.in
+app/runtime.txt
+
