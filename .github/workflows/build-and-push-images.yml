@@ -20,7 +20,7 @@ jobs:
         uses: NunoMars/docker_image_repo@v1.5
         with:
           file: Dockerfile
-          image: 'tarot-${{ env.ENVIRONMENT }}'
+          image-name: 'tarot-${{ env.ENVIRONMENT }}'
           tag: ${{ github.ref_slug }}
           context: '.'
           github-token: ${{ secrets.GITHUB_TOKEN}}
