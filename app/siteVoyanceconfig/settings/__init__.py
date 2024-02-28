@@ -10,7 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
-
 import os
 from pathlib import Path
 
@@ -29,7 +28,7 @@ SECRET_KEY = "\\\ta(xZQ;xUIly1X@IGT:4re$"
 
 DEBUG = "PROD" not in os.environ
 
-ALLOWED_HOSTS = ["nunomars-server.eddi.cloud", "localhost", "127.0.0.1"]
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -46,11 +45,9 @@ INSTALLED_APPS = [
     "accounts.apps.AccountsConfig",
     "import_export",
     "responses.apps.ResponsesConfig",
+    "health_check",
 ]
 
-##################################################
-CRONJOBS = [("30 8 * * *", "accounts.cron.send_emails")]
-##################################################
 
 ######################AUTH#########################
 AUTH_USER_MODEL = "accounts.CustomUser"

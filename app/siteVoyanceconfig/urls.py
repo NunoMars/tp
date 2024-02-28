@@ -15,6 +15,3 @@ urlpatterns = [
     path("contacts", contacts, name="contacts"),
     path("healthz", include("health_check.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-if "rosetta" in settings.INSTALLED_APPS:
-    urlpatterns += [re_path(r"^rosetta/", include("rosetta.urls"))]

@@ -25,7 +25,6 @@ jobs:
           pr-mode: false
           args: --apply-fixes
           push-fixes: pull-request          
-          bootstrap: pip install -r app/requirements.txt
-          fail-threshold: 1 
+          commit-message: 'Qodana inspection results'
         env:
           QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
