@@ -1,3 +1,6 @@
+
+[![Code sacn for the Tarot App](https://github.com/NunoMars/tp/actions/workflows/code-quality.yml/badge.svg)](https://github.com/NunoMars/tp/actions/workflows/code-quality.yml)
+
 # Infrastructure et Guide d'Installation
 
 ## Architecture
