@@ -7,7 +7,6 @@ on:
       - master # The 'main' branch
       - dev # The release branches
 jobs:
-  needs: qodana
   build-and-push-image:    
     env:
       ENVIRONMENT: ${{ github.ref == 'refs/heads/master' && 'prod' || 'dev' }}    
