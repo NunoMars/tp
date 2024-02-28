@@ -4,12 +4,12 @@ on:
   pull_request:
   push:
     branches: # Specify your branches here
-      - master # The 'main' branch
+      - main # The 'main' branch
       - dev # The release branches
 jobs:
   build-and-push-image:    
     env:
-      ENVIRONMENT: ${{ github.ref == 'refs/heads/master' && 'prod' || 'dev' }}    
+      ENVIRONMENT: ${{ github.ref == 'refs/heads/main' && 'prod' || 'dev' }}    
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -17,7 +17,7 @@ jobs:
         uses: NunoMars/docker_image_repo@v1.5
         with:
           file: Dockerfile
-          image: 'tarot-${{ env.ENVIRONMENT }}:${{ github.ref_slug }}'
+          image: 'tarot${{ env.ENVIRONMENT }}:${{ github.ref_slug }}'
           tag: ${{ github.ref_slug }}
           context: 'app'
           github-token: ${{ secrets.GITHUB_TOKEN}}
