@@ -1,7 +1,11 @@
 
+# Infrastructure et Guide d'Installation
+
+## Code Qualité
 [![Code sacn for the Tarot App](https://github.com/NunoMars/tp/actions/workflows/code-quality.yml/badge.svg)](https://github.com/NunoMars/tp/actions/workflows/code-quality.yml)
 
-# Infrastructure et Guide d'Installation
+## Création images docker
+[![Build and push images to GitHub Container Registry](https://github.com/NunoMars/tp/actions/workflows/build-and-push-images.yml/badge.svg)](https://github.com/NunoMars/tp/actions/workflows/build-and-push-images.yml)
 
 ## Architecture
 
