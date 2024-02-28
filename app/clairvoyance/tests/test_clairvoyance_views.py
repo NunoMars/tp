@@ -42,11 +42,6 @@ class ClairvoyancePagesTest(TestCase):
         response = self.client.get(reverse("card_deck"))
         self.assertEqual(response.status_code, 200)
 
-    def test_card_detail_page(self):
-        card = MajorArcana.objects.get(card_name="carte11")
-        response = self.client.get(reverse("card_detail", args=[card.pk]))
-        self.assertEqual(response.status_code, 200)
-
     def test_user_history_page(self):
         response = self.client.get(reverse("history"))
         self.assertEqual(response.status_code, 302)

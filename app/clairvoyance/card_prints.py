@@ -10,17 +10,17 @@ def response_card(name, chosed_card_deck, chosed_theme):
     card = _average_result_card(chosed_card_deck)
 
     themes = {
-        "love": card.card_signification_love_fr,
-        "work": card.card_signification_work_fr,
-        "gen": card.card_signification_gen_fr,
+        "love": card.card_signification_love,
+        "work": card.card_signification_work,
+        "gen": card.card_signification_gen,
     }
 
     return {
         "user_name": name,
         "card_image": card.card_image.url,
-        "card_name": card.card_name_fr.capitalize(),
+        "card_name": card.card_name.capitalize(),
         "chosed_theme_signification": themes[chosed_theme],
-        "warnings": card.card_signification_warnings_fr,
+        "warnings": card.card_signification_warnings,
     }, card
 
 
@@ -54,7 +54,7 @@ def _average_result_card(chosed_card_deck):
 
     list_of_cards_ids = []
     for card in chosed_card_deck:
-        card = MajorArcana.objects.get(card_name_fr=card)
+        card = MajorArcana.objects.get(card_name=card)
         list_of_cards_ids.append(card.id)
 
     mean_card = round(sum(list_of_cards_ids) / len(list_of_cards_ids), 2)
@@ -89,12 +89,12 @@ def _create_cards_message(card, chosed_theme):
         + "this.src='/static/img/cards/Back.jpg'"
         + " alt=''/>"
         + "<span><p>"
-        + card.card_name_fr.capitalize()
+        + card.card_name.capitalize()
         + "</p>"
         + "<p>"
         + "Mise en Garde!"
         + "</p>"
-        + card.card_signification_warnings_fr
+        + card.card_signification_warnings
         + "<p>"
         + "ce que signifie la carte!"
         + "</p>"
@@ -149,7 +149,7 @@ def clairvoyante_sort_cards(name, chosed_card_deck, chosed_theme):
     list_of_polarity = []
 
     for card in chosed_card_deck:
-        card = MajorArcana.objects.get(card_name_fr=card)
+        card = MajorArcana.objects.get(card_name=card)
         list_of_polarity.append(card.card_polarity)
         message_card = _create_cards_message(card, chosed_theme)
         list_of_cards.append(message_card)

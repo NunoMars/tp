@@ -5,16 +5,14 @@ from .prepare_decks_cards import prepare_decks
 
 def _extracted_from_clairvoyant_64(arg0):
     deck = arg0.objects.all()
-    final_tarot_response = clairvoyante_sort_cards(
-        user_name, deck, chosed_theme
-    )
+    final_tarot_response = clairvoyante_sort_cards(user_name, deck, chosed_theme)
     return {
         "subject": "final_response",
         "message": final_tarot_response[0],
     }
 
 
-def clairvoyant(input_value, lang):
+def clairvoyant(input_value):
     """
     Construct the bot response.
     """
@@ -50,7 +48,7 @@ def clairvoyant(input_value, lang):
         }
 
     elif input_value == "one":
-        return _get_response_one_card(rand_card, lang)
+        return _get_response_one_card(rand_card)
 
     elif input_value in ["love", "work", "gen", "one"]:
         chosed_theme = input_value
@@ -75,34 +73,13 @@ def clairvoyant(input_value, lang):
         return _extracted_from_clairvoyant_64(RightDeck)
 
 
-def _get_response_one_card(rand_card, lang):
-    if lang == "en":
-        card_name = rand_card.card_name_en
-        card_signification_warnings = rand_card.card_signification_warnings_en
-        card_signification_love = rand_card.card_signification_love_en
-        card_signification_work = rand_card.card_signification_work_en
-        card_signification_gen = rand_card.card_signification_gen_en
+def _get_response_one_card(rand_card):
 
-    elif lang == "fr":
-        card_name = rand_card.card_name_fr
-        card_signification_warnings = rand_card.card_signification_warnings_fr
-        card_signification_love = rand_card.card_signification_love_fr
-        card_signification_work = rand_card.card_signification_work_fr
-        card_signification_gen = rand_card.card_signification_gen_fr
-
-    elif lang == "pt":
-        card_name = rand_card.card_name_pt
-        card_signification_warnings = rand_card.card_signification_warnings_pt
-        card_signification_love = rand_card.card_signification_love_pt
-        card_signification_work = rand_card.card_signification_work_pt
-        card_signification_gen = rand_card.card_signification_gen_pt
-
-    elif lang == "es":
-        card_name = rand_card.card_name_es
-        card_signification_warnings = rand_card.card_signification_warnings_es
-        card_signification_love = rand_card.card_signification_love_es
-        card_signification_work = rand_card.card_signification_work_es
-        card_signification_gen = rand_card.card_signification_gen_es
+    card_name = rand_card.card_name
+    card_signification_warnings = rand_card.card_signification_warnings
+    card_signification_love = rand_card.card_signification_love
+    card_signification_work = rand_card.card_signification_work
+    card_signification_gen = rand_card.card_signification_gen
 
     return {
         "subject": "one_card",

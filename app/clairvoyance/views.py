@@ -33,10 +33,7 @@ class CardDeckView(View):
 
     def get(self, request, *args, **kwargs):
         cards = MajorArcana.objects.all()
-        lang = request.LANGUAGE_CODE
-
         context = {
-            "lang": lang,
             "cards": cards,
         }
         return render(request, self.template_name, context)
@@ -44,25 +41,9 @@ class CardDeckView(View):
 
 class CardDetailView(View):
     template_name = "clairvoyance/card_detail.html"
-    lang_fields = {
-        "fr": "fr",
-        "pt": "pt",
-        "en": "en",
-        "es": "es",
-    }
 
     def get_queryset(self):
-        lang = self.request.LANGUAGE_CODE
-
-        field_suffix = self.lang_fields.get(lang, "fr")
-        return MajorArcana.objects.all().values(
-            f"card_name_{field_suffix}",
-            f"card_signification_gen_{field_suffix}",
-            f"card_signification_love_{field_suffix}",
-            f"card_signification_work_{field_suffix}",
-            f"card_signification_warnings_{field_suffix}",
-            "card_image",
-        )
+        return MajorArcana.objects.all()
 
     def get(self, request, card):
         queryset = self.get_queryset()
@@ -78,7 +59,7 @@ def clairvoyante(request):
         return
     with contextlib.suppress(ValueError):
         input_value = request.POST.get("messageInput")
-        result = clairvoyant(input_value, request.LANGUAGE_CODE)
+        result = clairvoyant(input_value)
         return JsonResponse(result)
 
 
