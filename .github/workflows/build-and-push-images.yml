@@ -21,4 +21,4 @@ jobs:
           image-name: 'tarot-${{ env.ENVIRONMENT }}'
           password: ${{ secrets.GITHUB_TOKEN}}
           username: ${{ github.actor }}
-          image-tag: ${{ github.sha }}
+          image-tag: ${{ github.ref_slug }}
