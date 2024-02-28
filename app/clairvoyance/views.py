@@ -8,6 +8,7 @@ from .models import MajorArcana
 from accounts.models import CustomUser, History, DailySortedCards
 from django.views.generic.base import TemplateView
 from django.views import View
+from django.http import Http404
 
 
 class IndexView(TemplateView):
@@ -42,16 +43,15 @@ class CardDeckView(View):
 class CardDetailView(View):
     template_name = "clairvoyance/card_detail.html"
 
-    def get_queryset(self):
-        return MajorArcana.objects.all()
-
     def get(self, request, card):
-        queryset = self.get_queryset()
-        if card_data := queryset.filter(id=card).first():
-            print(card_data)
-            return render(request, self.template_name, card_data)
-        else:
-            return render(request, "clairvoyance/card_not_found.html")
+        queryset = MajorArcana.objects.all()
+        try:
+            card = queryset.filter(id=card)
+        except MajorArcana.DoesNotExist:
+            raise Http404("Card does not exist")
+
+        context = {"card": card[0]}
+        return render(request, self.template_name, context)
 
 
 def clairvoyante(request):

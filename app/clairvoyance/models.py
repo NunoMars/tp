@@ -12,10 +12,12 @@ class MajorArcana(models.Model):
     )
 
     card_name = models.CharField(max_length=50)
-    card_signification_gen = models.TextField(default="fr")
-    card_signification_warnings = models.TextField(default="fr")
-    card_signification_love = models.TextField(default="fr")
-    card_signification_work = models.TextField(default="fr")
+    card_signification_gen = models.TextField(default="card_signification_gen")
+    card_signification_warnings = models.TextField(
+        default="card_signification_warnings"
+    )
+    card_signification_love = models.TextField(default="card_signification_love")
+    card_signification_work = models.TextField(default="card_signification_work")
     card_image = models.ImageField(upload_to="MajorArcanaCards")
     card_polarity = models.CharField(max_length=10, choices=CHOICES, default="Positif")
 
