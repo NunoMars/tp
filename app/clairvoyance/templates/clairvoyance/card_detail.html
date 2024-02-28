@@ -8,6 +8,7 @@
         float: left;
         margin: 40px;
     }
+
 </style>
 {% block body %}
 
@@ -17,15 +18,34 @@
         <h1 class="text-white">{{card.card_name}}</h1>
     </div>       
     <div class="row-md mx-auto justify-content-center text-white align-items-center text-center">                                                
-        <div><img class="imagefloat pull-left rounded" width="30%" src="{{card.card_image.url}}" alt="{{card_name}}"></div>
-            {{card.card_signification}}
+        <div><img class="imagefloat pull-left rounded" width="30%" src="{{card.card_image.url}}" alt="{{card_name}}" data-toggle="modal" data-target="#cardModal">
+        </div>
+            <p class="font-weight-font-weight-normal">{{card.card_signification}}</p>
             <h3>Les aspects negatifs de {{card.card_name}}</h3>
-            {{card.card_signification_warnings}}
+            <p class="font-weight-normal">{{card.card_signification_warnings}}</p>
             <h3>{{card.card_name}} en amour:</h3>
-            <p>{{card.card_signification_love}}</p>
+            <p class="font-weight-normal">{{card.card_signification_love}}</p>
             <h3>{{card.card_name}} au Travail</h3>
-            <p>{{card.card_signification_work}}</p> 
+            <pclass="font-weight-normal">{{card.card_signification_work}}</p> 
         </div>     
     </div>
 </section>
+<!-- Modal -->
+<div class="modal fade" id="cardModal" tabindex="-1" role="dialog" aria-labelledby="cardModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <button data-dismiss="modal" aria-label="Close">
+            <img src="{{card.card_image.url}}" alt="{{card_name}}" style="max-width: 100%; height: auto;" id="modalImage">
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>  
+  <script>
+    // Fermer la modal lorsque vous cliquez sur l'image dans la modal
+    document.getElementById("modalImage").addEventListener("click", function() {
+      $('#cardModal').modal('hide'); // Fermer la modal
+    });
+  </script>
 {% endblock body %}

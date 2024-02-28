@@ -12,6 +12,15 @@ class Command(BaseCommand):
         # Parcourir chaque objet et mettre à jour les champs concernés
         for card in arcana_cards:
             # Mise à jour des champs texte
+            card.card_name = (
+                card.card_name.replace("Ã©", "é")
+                .replace("Ã¨", "è")
+                .replace("Ãª", "ê")
+                .replace("Ã", "à")
+                .replace("Ã§", "ç")
+                .replace("à®", "â")
+                .replace("à‰", "É")
+            )
             card.card_signification_gen = (
                 card.card_signification_gen.replace("Ã©", "é")
                 .replace("Ã¨", "è")
