@@ -9,10 +9,11 @@ on:
 jobs:
   build-and-push-image:    
     env:
-      ENVIRONMENT: ${{ github.ref == 'refs/heads/main' && 'prod' || 'dev' }}    
+      ENVIRONMENT: ${{ github.ref == 'refs/heads/main' && 'prod' || 'dev' }}
+      imageTag: ${{ github.ref_slug }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Change directory to app
         run: cd app
       - name: Docker Image build and push to GitHub Container Registry
