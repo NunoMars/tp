@@ -2,7 +2,7 @@ name: Code scan for the Tarot App
 on:
   workflow_dispatch:
   workflow_run:
-    workflows: ["Code scan for the Tarot App"]
+    workflows: ["Run python code tets"]
     branches: [main, dev]
     types:
       - completed 
