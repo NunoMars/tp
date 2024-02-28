@@ -16,9 +16,9 @@ jobs:
       - name: Change directory to app
         run: cd app
       - name: Docker Image build and push to GitHub Container Registry
-        uses: NunoMars/docker_image_repo@v2.2    
+        uses: NunoMars/docker_image_repo@v2.3   
         with:
           image-name: 'tarot-${{ env.ENVIRONMENT }}'
           password: ${{ secrets.GITHUB_TOKEN}}
           username: ${{ github.actor }}
-          image-tag: ${{ github.ref_slug }}
+          image-tag: ${{ github.sha }}
