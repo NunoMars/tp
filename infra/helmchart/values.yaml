@@ -1,5 +1,5 @@
 appname: "tarot-app-prod"
-backendlabel: "tarotprod"
+backendlabel: "tarot-prod"
 replicas: 1
 namespace: "taror-app-prod"
 cmname: "tarot-app-cm-prod"
