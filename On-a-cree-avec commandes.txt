@@ -18,5 +18,7 @@ kubectl port-forward svc/dockprom-grafana -n <namespace> 8090:3000
 Code_qualité sur actions et Codana-clout jetbrains.
 mis sur le repo git hub
 
-monitoring a ajouter 
+monitoring fait sur le cluster
 https://kourou.oclock.io/ressources/recap-quotidien/hati-s14e05-prometheus-grafana-datadog/
+
+l'application a un end point healthz

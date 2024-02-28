@@ -1,9 +1,9 @@
-appname: "final-app-nuno-dev"
-frontendlabel: "nuno-frontend-last-dev"
-backendlabel: "nuno-pontoise-backend-last-dev"
+appname: "tarot-app-prod"
+backendlabel: "tarot-prod"
 replicas: 1
-namespace: "nuno-dev"
-cmname: "nuno-cm-dev"
-environement: "dev"
-projname: "final-app-multidev"
-pvcname: "nuno-pvc-dev"
+namespace: "taror-app-prod"
+cmname: "tarot-app-cm-prod"
+environement: "prod"
+projname: "tarot-app"
+pvcname: "tarot-app-pvc-prod"
+defaultTag: latest

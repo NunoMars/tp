@@ -19,7 +19,7 @@ spec:
             claimName: "{{ .Release.Name }}-pvc"
       containers:
       - name: "{{ .Release.Name }}-back-container" # Name of the container with the release name
-        image: nunoloupy/{{ .Values.backendlabel }}:latest
+        image: "ghcr.io/nunomars/{{ .Values.backendlabel }}:{{ .Values.imageTag }}"
         ports:
           - containerPort: 5000
         volumeMounts:

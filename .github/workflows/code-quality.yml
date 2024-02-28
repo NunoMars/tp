@@ -1,14 +1,13 @@
-name: Qodana
+name: Code sacn for the Tarot App
 on:
   workflow_dispatch:
   pull_request:
   push:
     branches: # Specify your branches here
-      - main # The 'main' branch
-      - 'releases/*' # The release branches
-
-jobs:
-  qodana:
+      - master # The 'main' branch
+      - dev # The release branches
+jobs:  
+  qodana:    
     runs-on: ubuntu-latest
     permissions:
       contents: write
