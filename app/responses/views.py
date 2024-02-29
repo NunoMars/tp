@@ -3,17 +3,14 @@ from django.shortcuts import render
 from django.utils.translation import gettext as _
 from random import choice as ch
 from .models import (
-    ResponsesBookPt,
     ResponsesBookFr,
-    ResponsesBookEs,
-    ResponsesBookEn,
 )
 
 
 def responses(request):
     args = {}
 
-    model = ResponsesBookPt
+    model = ResponsesBookFr
     sentences = model.objects.all()
     rand_message = ch(sentences)
     args = {"sentence": rand_message}

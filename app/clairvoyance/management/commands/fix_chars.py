@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from clairvoyance.models import MajorArcana  # Remplacez MyModel par votre modèle
+from clairvoyance.models import MajorArcana
 
 
 class Command(BaseCommand):
@@ -12,53 +12,33 @@ class Command(BaseCommand):
         # Parcourir chaque objet et mettre à jour les champs concernés
         for card in arcana_cards:
             # Mise à jour des champs texte
-            card.card_name = (
-                card.card_name.replace("Ã©", "é")
-                .replace("Ã¨", "è")
-                .replace("Ãª", "ê")
-                .replace("Ã", "à")
-                .replace("Ã§", "ç")
-                .replace("à®", "â")
-                .replace("à‰", "É")
-            )
-            card.card_signification_gen = (
-                card.card_signification_gen.replace("Ã©", "é")
-                .replace("Ã¨", "è")
-                .replace("Ãª", "ê")
-                .replace("Ã", "à")
-                .replace("Ã§", "ç")
-                .replace("à®", "â")
-                .replace("à‰", "É")
-            )
-            card.card_signification_warnings = (
-                card.card_signification_warnings.replace("Ã©", "é")
-                .replace("Ã¨", "è")
-                .replace("Ãª", "ê")
-                .replace("Ã", "à")
-                .replace("Ã§", "ç")
-                .replace("à®", "â")
-                .replace("à‰", "É")
-            )
-            card.card_signification_love = (
-                card.card_signification_love.replace("Ã©", "é")
-                .replace("Ã¨", "è")
-                .replace("Ãª", "ê")
-                .replace("Ã", "à")
-                .replace("Ã§", "ç")
-                .replace("à®", "â")
-                .replace("à‰", "É")
-            )
-            card.card_signification_work = (
-                card.card_signification_work.replace("Ã©", "é")
-                .replace("Ã¨", "è")
-                .replace("Ãª", "ê")
-                .replace("Ã", "à")
-                .replace("Ã§", "ç")
-                .replace("à®", "â")
-                .replace("à‰", "É")
-            )
+            replacements = {
+                "Ã©": "é",
+                "Ã¨": "è",
+                "Ãª": "ê",
+                "Ã": "à",
+                "Ã§": "ç",
+                "à®": "â",
+                "à‰": "É",
+                "Ã´": "ô",
+                "Ã»": "û",
+                "à§": "ç",
+                "Å“": "œ",
+            }
 
-            # Sauvegarde de l'objet mis à jour
+            for field in [
+                "card_name",
+                "card_signification_gen",
+                "card_signification_warnings",
+                "card_signification_love",
+                "card_signification_work",
+            ]:
+                setattr(
+                    card,
+                    field,
+                    "".join(replacements.get(c, c) for c in getattr(card, field)),
+                )
+
             card.save()
 
         self.stdout.write(
