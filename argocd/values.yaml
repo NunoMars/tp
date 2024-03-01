@@ -1,4 +1,4 @@
-appname: "site-voyance-dev"
+appname: ""
 backendlabel: "tarot-dev"
 replicas: 1
 namespace: "site-voyance-dev"
