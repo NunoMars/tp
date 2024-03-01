@@ -13,21 +13,15 @@ spec:
       labels:
         app: "{{ .Release.Name }}-back-deployment"
     spec:
-      volumes:
-      - name: backend-config
-        configMap:
-          name: "{{ .Release.Name }}-backend-cm" # Nom du ConfigMap à monter
-      - name: "{{ .Release.Name }}-backend-pvc"
-        persistentVolumeClaim:
-          claimName: "{{ .Release.Name }}-backend-pvc"
       containers:
       - name: "{{ .Release.Name }}-back-container"
         image: "ghcr.io/nunomars/tp/{{ .Values.backendlabel }}:{{ .Values.defaultTag }}"
         ports:
         - containerPort: 5000
+        envFrom:
+        - configMapRef:
+            name: "{{ .Release.Name }}-backend-cm" # Nom du ConfigMap contenant les variables d'environnement
         volumeMounts:
-        - name: backend-config
-          mountPath: /config   # Chemin de montage pour le ConfigMap
         - name: "{{ .Release.Name }}-backend-pvc"
           mountPath: /app/staticfiles
         resources: 
