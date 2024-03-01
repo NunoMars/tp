@@ -1,0 +1,9 @@
+appname: "tarot-app-dev"
+backendlabel: "tarot-dev"
+replicas: 1
+namespace: "taror-app-dev"
+cmname: "tarot-app-cm-dev"
+environement: "dev"
+projname: "tarot-app"
+pvcname: "tarot-app-pvc-dev"
+defaultTag: latest

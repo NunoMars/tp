@@ -1,4 +1,0 @@
-https://medium.com/avmconsulting-blog/encrypting-the-certificate-for-kubernetes-lets-encrypt-805d2bf88b2a
-
-
-j'ai un fichier helpers.tps afin de recuper le tag de l"image docker generée
