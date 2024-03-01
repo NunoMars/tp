@@ -72,12 +72,3 @@ jobs:
           image-name: 'tarot-${{ env.ENVIRONMENT }}'
           password: ${{ secrets.GITHUB_TOKEN}}
           username: ${{ github.actor }}
-      - name: Pushing Helm Chart
-        run: |
-          REPO_OWNER=`echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]'`
-          # create chart package for chart `site-voyance-prod`
-          helm package site-voyance-prod
-          # Get packed chart file name
-          PKG_NAME=`ls *.tgz`
-          # pushing `site-voyance-prod-1.0.0.tgz` to registry
-          helm push ${PKG_NAME} oci://ghcr.io/${REPO_OWNER}/charts
