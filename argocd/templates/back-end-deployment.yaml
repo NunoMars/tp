@@ -14,7 +14,7 @@ spec:
         app: "{{ .Release.Name }}-back-deployment"
     spec:
       volumes:
-      - name: "{{ .Release.Name }}-backend-pvc"  # Nom du volume correspondant au volumeMounts
+      - name: "{{ .Release.Name }}-backend-pvc"
         persistentVolumeClaim:
           claimName: "{{ .Release.Name }}-backend-pvc"
       containers:
@@ -24,9 +24,9 @@ spec:
         - containerPort: 5000
         envFrom:
         - configMapRef:
-            name: "{{ .Release.Name }}-backend-cm" # Nom du ConfigMap contenant les variables d'environnement
+            name: "{{ .Release.Name }}-backend-cm"
         volumeMounts:
-        - name: "{{ .Release.Name }}-backend-pvc-staticfiles"  # Nom du volume correspondant au volumeMounts
+        - name: "{{ .Release.Name }}-backend-pvc-staticfiles"
           mountPath: /app/staticfiles
         - name: "{{ .Release.Name }}-backend-pvc-media"
           mountPath: /app/media
