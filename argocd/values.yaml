@@ -1,9 +1,9 @@
-appname: "tarot-app-dev"
-backendlabel: "tarot-dev"
+appname: "tarot-app-prod"
+backendlabel: "tarot-prod"
 replicas: 1
-namespace: "taror-app-dev"
-cmname: "tarot-app-cm-dev"
-environement: "dev"
-projname: "tarot-app"
-pvcname: "tarot-app-pvc-dev"
+namespace: "taror-app-prod"
+cmname: "tarot-app-cm-prod"
+environement: "prod"
+projname: "tarot-prod"
+pvcname: "tarot-app-pvc-prod"
 defaultTag: latest
