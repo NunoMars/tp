@@ -1,26 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: "{{ .Release.Name }}-nginx-deployment"
+  name: "{{ .Release.Name }}-caddy-deployment"
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: "{{ .Release.Name }}-nginx-deployment"
+      app: "{{ .Release.Name }}-caddy-deployment"
   template:
     metadata:
       labels:
-        app: "{{ .Release.Name }}-nginx-deployment"
+        app: "{{ .Release.Name }}-caddy-deployment"
     spec:
       containers:
-      - name: nginx
-        image: nginx:latest
+      - name: caddy
+        image: caddy:latest  # Utilisez l'image Docker de Caddy
         ports:
         - containerPort: 80
         volumeMounts:
         - name: "{{ .Release.Name }}-frontend-cm"
-          mountPath: /etc/nginx/nginx.conf
-          subPath: nginx.conf
+          mountPath: /etc/caddy/Caddyfile  # Chemin du fichier de configuration de Caddy
+          subPath: Caddyfile
       volumes:
       - name: "{{ .Release.Name }}-frontend-cm"
         configMap:
