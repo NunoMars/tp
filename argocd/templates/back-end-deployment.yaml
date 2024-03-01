@@ -13,10 +13,6 @@ spec:
       labels:
         app: "{{ .Release.Name }}-back-deployment"
     spec:
-      volumes:
-      - name: "{{ .Release.Name }}-backend-pvc"
-        persistentVolumeClaim:
-          claimName: "{{ .Release.Name }}-backend-pvc"
       containers:
       - name: "{{ .Release.Name }}-back-container"
         image: "ghcr.io/nunomars/tp/{{ .Values.backendlabel }}:{{ .Values.defaultTag }}"
@@ -25,11 +21,6 @@ spec:
         envFrom:
         - configMapRef:
             name: "{{ .Release.Name }}-backend-cm"
-        volumeMounts:
-        - name: "{{ .Release.Name }}-backend-pvc-staticfiles"
-          mountPath: /app/staticfiles
-        - name: "{{ .Release.Name }}-backend-pvc-media"
-          mountPath: /app/media
         resources: 
           requests:
             cpu: 50m
