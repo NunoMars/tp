@@ -1,9 +1,9 @@
-appname: "tarot-app-dev"
+appname: "site-voyance-dev"
 backendlabel: "tarot-dev"
 replicas: 1
-namespace: "taror-app-dev"
+namespace: "site-voyance-dev"
 cmname: "tarot-app-cm-dev"
 environement: "dev"
-projname: "tarot-dev"
+projname: "site-voyance-dev"
 pvcname: "tarot-app-pvc-dev"
 defaultTag: latest
