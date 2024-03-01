@@ -18,17 +18,10 @@ spec:
         ports:
         - containerPort: 80
         volumeMounts:
-        - name: nginx-config
+        - name: "{{ .Release.Name }}-frontend-cm"
           mountPath: /etc/nginx/nginx.conf
           subPath: nginx.conf
       volumes:
-      - name: nginx-config
+      - name: "{{ .Release.Name }}-frontend-cm"
         configMap:
-          name: nginx-config
-  volumeMounts:
-  - name: nginx-config
-    configMap:
-      name: "{{ .Release.Name }}-frontend-cm"
-    items:
-    - key: nginx.conf
-      path: nginx.conf
+          name: "{{ .Release.Name }}-frontend-cm"
