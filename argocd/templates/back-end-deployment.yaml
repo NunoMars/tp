@@ -26,9 +26,8 @@ spec:
         - configMapRef:
             name: "{{ .Release.Name }}-backend-cm" # Nom du ConfigMap contenant les variables d'environnement
         volumeMounts:
-        - name: "{{ .Release.Name }}-backend-pvc-saticfiles"  # Nom du volume correspondant au volumeMounts
+        - name: "{{ .Release.Name }}-backend-pvc-staticfiles"  # Nom du volume correspondant au volumeMounts
           mountPath: /app/staticfiles
-        volumeMounts:
         - name: "{{ .Release.Name }}-backend-pvc-media"
           mountPath: /app/media
         resources: 
@@ -45,4 +44,3 @@ spec:
           initialDelaySeconds: 10
           periodSeconds: 5
 status: {}
-
