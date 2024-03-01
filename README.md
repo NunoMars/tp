@@ -5,8 +5,6 @@
 
 [![CI/CD Workflow](https://github.com/NunoMars/tp/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/NunoMars/tp/actions/workflows/ci-cd.yml)
 
-## Architecture
-
 ### Composants de l'Infrastructure:
 
 1. **Cluster Kubernetes** :
