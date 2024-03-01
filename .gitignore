@@ -1,5 +1,3 @@
 app/venv
-infra/deploy_cluster_aws/.terraform
-infra/deploy_cluster_aws/kubectl.exe
-infra/deploy_cluster_aws/kubectl.exe.sha256
+app/db.sqlite3
 

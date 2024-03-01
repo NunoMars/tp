@@ -26,7 +26,7 @@ SECRET_KEY = "\\\ta(xZQ;xUIly1X@IGT:4re$"
 # SECURITY WARNING: don't run with debug turned on in production!
 
 
-DEBUG = "PROD" not in os.environ
+DEBUG = "prod" not in os.environ
 
 ALLOWED_HOSTS = ["*"]
 
@@ -119,7 +119,7 @@ DATABASES = (
             "PORT": "5432",
         }
     }
-    if "PROD" in os.environ
+    if "prod" in os.environ
     else {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
