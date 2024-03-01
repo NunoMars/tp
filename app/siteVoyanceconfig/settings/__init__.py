@@ -107,6 +107,7 @@ WSGI_APPLICATION = "siteVoyanceconfig.wsgi.application"
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DB_HOST = os.environ.get("DB_HOST")
+DB_PORT = os.environ.get("DB_PORT")
 
 DATABASES = (
     {
@@ -116,7 +117,7 @@ DATABASES = (
             "USER": "Nuno",
             "PASSWORD": "bcxau9p^^123.",
             "HOST": DB_HOST,
-            "PORT": "5432",
+            "PORT": DB_PORT,
         }
     }
     if "prod" in os.environ

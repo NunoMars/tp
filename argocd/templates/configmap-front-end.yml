@@ -1,10 +1,8 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: "{{ .Release.Name }}-cm"
+  name: "{{ .Release.Name }}-frontend-cm"
 data:
-  DB_HOST: "{{ .Release.Name }}-postgresql-service"
-  ENV: "{{ .Values.environement }}"
   nginx.conf: |
     server {
       listen 80;

@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "{{ .Release.Name }}-backend-cm"
+data:
+  DB_HOST: "{{ .Release.Name }}-postgresql-service"
+  ENV: "{{ .Values.environement }}"
+  DB_PORT: "5432"
