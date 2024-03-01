@@ -12,4 +12,4 @@ RUN python3 manage.py migrate
 EXPOSE 5000
 
 # Commande pour démarrer l'application
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "siteVoyance.wsgi:application"]
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "siteVoyanceconfig.wsgi:application"]
