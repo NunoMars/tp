@@ -16,6 +16,8 @@ spec:
       containers:
       - name: "{{ .Release.Name }}-back-container"
         image: "ghcr.io/nunomars/tp/{{ .Values.backendlabel }}:{{ .Values.defaultTag }}"
+        imagePullSecrets:
+        - name: LocalRegistrySecret
         ports:
         - containerPort: 5000
         envFrom:
