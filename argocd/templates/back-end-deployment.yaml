@@ -13,11 +13,12 @@ spec:
       labels:
         app: "{{ .Release.Name }}-back-deployment"
     spec:
+      imagePullSecrets:
+        - name: localregistrysecret
       containers:
       - name: "{{ .Release.Name }}-back-container"
         image: "ghcr.io/nunomars/tp/{{ .Values.backendlabel }}:{{ .Values.defaultTag }}"
-        imagePullSecrets:
-        - name: localregistrysecret
+      
         ports:
         - containerPort: 5000
         envFrom:
