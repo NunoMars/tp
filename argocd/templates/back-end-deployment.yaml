@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: "{{ .Release.Name }}-back-deployment" # Name of the deployment with the release name
+  name: "{{ .Release.Name }}-back-deployment"
   namespace: {{ .Values.namespace }}
 spec:
   replicas: {{ .Values.replicas }}
@@ -14,17 +14,22 @@ spec:
         app: "{{ .Release.Name }}-back-deployment"
     spec:
       volumes:
-        - name: "{{ .Release.Name }}-pvc"
-          persistentVolumeClaim:
-            claimName: "{{ .Release.Name }}-pvc"
+      - name: backend-config
+        configMap:
+          name: "{{ .Release.Name }}-backend-cm" # Nom du ConfigMap à monter
+      - name: "{{ .Release.Name }}-backend-pvc"
+        persistentVolumeClaim:
+          claimName: "{{ .Release.Name }}-backend-pvc"
       containers:
-      - name: "{{ .Release.Name }}-back-container" # Name of the container with the release name
+      - name: "{{ .Release.Name }}-back-container"
         image: "ghcr.io/nunomars/tp/{{ .Values.backendlabel }}:{{ .Values.defaultTag }}"
         ports:
-          - containerPort: 5000
+        - containerPort: 5000
         volumeMounts:
-          - name: "{{ .Release.Name }}-pvc"
-            mountPath: /app/saticfiles
+        - name: backend-config
+          mountPath: /config   # Chemin de montage pour le ConfigMap
+        - name: "{{ .Release.Name }}-backend-pvc"
+          mountPath: /app/staticfiles
         resources: 
           requests:
             cpu: 50m

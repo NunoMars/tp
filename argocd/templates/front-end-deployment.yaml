@@ -28,7 +28,7 @@ spec:
   volumeMounts:
   - name: nginx-config
     configMap:
-      name: "{{ .Release.Name }}-cm"
+      name: "{{ .Release.Name }}-frontend-cm"
     items:
     - key: nginx.conf
       path: nginx.conf
