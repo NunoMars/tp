@@ -8,8 +8,9 @@ metadata:
 spec:
   selector:
     app: "{{ .Release.Name }}-back-deployment"
-  type: ClusterIP
+  type: LoadBalancer
   ports:
   - name: "http"
-    protocol: "TCP"
+    port: 80
+    protocol: TCP
     targetPort: 5000
