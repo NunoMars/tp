@@ -95,7 +95,7 @@ xlwt==1.3.0
     # via
     #   -r requirements.in
     #   tablib
-
+whitenoise
 # The following packages are considered to be unsafe in a requirements file:
 # pip
 # setuptools
