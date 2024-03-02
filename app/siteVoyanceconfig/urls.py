@@ -1,13 +1,13 @@
 from django.contrib import admin
-from django.urls import path, include, re_path
+from django.urls import path, include
 from clairvoyance.views import IndexView, contacts
 from django.conf import settings
 from django.conf.urls.static import static
-
+from django.views.decorators.csrf import csrf_exempt
 
 urlpatterns = [
     path("", IndexView.as_view(), name="home"),
-    path("admin", admin.site.urls, name="admin"),
+    path(csrf_exempt("admin", admin.site.urls, name="admin")),
     path("accounts/", include("accounts.urls")),
     path("clairvoyance/", include("clairvoyance.urls")),
     path("responses/", include("responses.urls")),
