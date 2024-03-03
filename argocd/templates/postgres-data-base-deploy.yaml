@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: postgresql
-        image: postgres:9.6
+        image: postgres:14.5
         env:
         - name: POSTGRES_DB
           value: {{ .Values.POSTGRES_DB }}
@@ -34,7 +34,7 @@ spec:
         - containerPort: 5432
         volumeMounts:
         - name: postgresql-persistent-storage
-          mountPath: /var/lib/postgresql/data/tarot-db
+          mountPath: /var/lib/postgresql/data
       volumes:
       - name: postgresql-persistent-storage
         persistentVolumeClaim:
