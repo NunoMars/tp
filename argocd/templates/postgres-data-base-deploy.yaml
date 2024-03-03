@@ -19,11 +19,17 @@ spec:
         image: postgres:9.6
         env:
         - name: POSTGRES_DB
-          value: {{ .Values.postgresql.database }}
-        - name: POSTGRES_USER
-          value: {{ .Values.postgresql.username }}
-        - name: POSTGRES_PASSWORD
-          value: {{ .Values.postgresql.password }}
+          value: {{ .Values.POSTGRES_DB }}
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: "{{ .Release.Name }}-postgresql-credentials"
+              key: POSTGRES_USER
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: "{{ .Release.Name }}-postgresql-credentials"
+              key: POSTGRES_PASSWORD
         ports:
         - containerPort: 5432
         volumeMounts:

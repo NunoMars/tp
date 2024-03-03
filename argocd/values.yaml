@@ -8,4 +8,5 @@ projname: "site-voyance-prod"
 pvcname: "tarot-app-pvc-prod"
 defaultTag: latest
 host: "site-voyance-prod.devops.oclock.school"
+POSTGRES_DB: "VoyanceDB"
 

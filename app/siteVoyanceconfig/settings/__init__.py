@@ -112,6 +112,7 @@ DB_PORT = os.environ.get("DB_PORT")
 DB_PASSWORD = os.environ.get("DB_PASSWORD")
 DB_USER = os.environ.get("DB_USER")
 
+
 DATABASES = (
     {
         "default": {
