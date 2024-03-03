@@ -4,8 +4,10 @@ metadata:
   name: {{ .Release.Name }}-django-media-pvc
   namespace: {{ .Values.namespace }}
 spec:
+  storageClassName: gp2
   accessModes:
     - ReadWriteOnce
+  volumeMode: Filesystem
   resources:
     requests:
-      storage: 5Gi # Taille du stockage souhaitée
+      storage: 5Gi
