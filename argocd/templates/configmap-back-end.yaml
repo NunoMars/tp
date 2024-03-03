@@ -2,6 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: "{{ .Release.Name }}-backend-cm"
+  namespace: {{ .Values.namespace }}
 data:
   DB_HOST: "{{ .Release.Name }}-postgresql-service"
   ENV: "{{ .Values.environement }}"
