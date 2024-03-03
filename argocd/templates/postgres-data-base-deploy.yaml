@@ -17,11 +17,6 @@ spec:
       containers:
       - name: postgresql
         image: postgres:9.6
-        command: ["/bin/bash", "-c"]
-        args:
-        - |
-          su postgres -c "initdb -D /var/lib/postgresql/data \
-            -E UTF8 --locale=en_US.utf8"
         env:
         - name: POSTGRES_DB
           value: {{ .Values.POSTGRES_DB }}
