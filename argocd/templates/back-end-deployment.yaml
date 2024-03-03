@@ -20,9 +20,6 @@ spec:
         image: "ghcr.io/nunomars/tp/{{ .Values.backendlabel }}:{{ .Values.defaultTag }}"      
         ports:
         - containerPort: 5000
-        env:
-          - name: DJANGO_SETTINGS_MODULE
-            value: "steVoyanceconfig.settings"
         envFrom:
         - configMapRef:
             name: "{{ .Release.Name }}-backend-cm"
