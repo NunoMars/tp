@@ -45,5 +45,5 @@ spec:
       volumes:
         - name: media-volume
           persistentVolumeClaim:
-            claimName: "{{ .Release.name }}-django-media-pvc"
+            claimName: {{ .Release.Name }}-django-media-pvc
 status: {}
