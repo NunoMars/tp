@@ -11,7 +11,7 @@ RUN python3 manage.py collectstatic --noinput
 
 # Comande pour appliquer les migrations
 RUN python3 manage.py migrate
-# RUN python3 manage.py loaddata > db.json
+RUN python3 manage.py loaddata > db.json
 
 EXPOSE 5000
 
