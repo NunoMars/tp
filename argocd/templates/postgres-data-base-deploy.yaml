@@ -34,7 +34,7 @@ spec:
         - containerPort: 5432
         volumeMounts:
         - name: postgresql-persistent-storage
-          mountPath: /var/lib/postgresql/data
+          mountPath: /var/lib/postgresql/data/tarot-db
       volumes:
       - name: postgresql-persistent-storage
         persistentVolumeClaim:
