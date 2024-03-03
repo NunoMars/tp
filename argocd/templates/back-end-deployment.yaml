@@ -24,16 +24,16 @@ spec:
         ports:
         - containerPort: 5000
         env:
-        - name: DB_URL
-          valueFrom:
-            configMapKeyRef:
-              name: .....
-              key: ....
-        - name: Db credentials        
-          valueFrom:
-            secretKeyRef:
-              name: mongo-secret
-              key: mongo-password          
+          - name: POSTGRES_USER
+            valueFrom:
+              secretKeyRef:
+                name: "{{ .Release.Name }}-postgresql-credentials"
+                key: POSTGRES_USER
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: "{{ .Release.Name }}-postgresql-credentials"
+                key: POSTGRES_PASSWORD       
         envFrom:
         - configMapRef:
             name: "{{ .Release.Name }}-backend-cm"
