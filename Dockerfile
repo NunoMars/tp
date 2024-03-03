@@ -6,9 +6,6 @@ WORKDIR /app
 COPY /app /app/
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Commande pour collecter les fichiers statiques
-RUN python3 manage.py collectstatic --noinput
-
 # Comande pour appliquer les migrations
 RUN python3 manage.py migrate
 RUN python3 manage.py loaddata > db.json
