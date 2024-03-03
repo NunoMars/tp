@@ -17,13 +17,18 @@ spec:
         - name: localregistrysecret
       containers:
       - name: "{{ .Release.Name }}-back-container"
-        image: "ghcr.io/nunomars/tp/{{ .Values.backendlabel }}:{{ .Values.defaultTag }}"
-      
+        image: "ghcr.io/nunomars/tp/{{ .Values.backendlabel }}:{{ .Values.defaultTag }}"      
         ports:
         - containerPort: 5000
+        env:
+          - name: DJANGO_SETTINGS_MODULE
+            value: "steVoyanceconfig.settings"          
         envFrom:
         - configMapRef:
             name: "{{ .Release.Name }}-backend-cm"
+        volumeMounts:
+            - name: media-volume
+              mountPath: /app/media    
         resources: 
           requests:
             cpu: 50m
@@ -37,4 +42,8 @@ spec:
             port: 5000
           initialDelaySeconds: 10
           periodSeconds: 5
+      volumes:
+        - name: media-volume
+          persistentVolumeClaim:
+            claimName: "{{ .Release.name }}-django-media-pvc"
 status: {}
