@@ -17,10 +17,12 @@ spec:
       containers:
       - name: postgresql
         image: postgres:9.6
+        command: ["initdb", "-D", "/var/lib/postgresql/data"]
+        args: ["-E", "UTF8", "--locale=en_US.utf8"]
         env:
         - name: POSTGRES_DB
           value: {{ .Values.POSTGRES_DB }}
-        - name: DB_USER
+        - name: POSTGRES_USER
           valueFrom:
             secretKeyRef:
               name: "{{ .Release.Name }}-postgresql-credentials"
@@ -34,7 +36,7 @@ spec:
         - containerPort: 5432
         volumeMounts:
         - name: postgresql-persistent-storage
-          mountPath: /var/lib/postgresql/data/pgdata
+          mountPath: /var/lib/postgresql/data
       volumes:
       - name: postgresql-persistent-storage
         persistentVolumeClaim:
