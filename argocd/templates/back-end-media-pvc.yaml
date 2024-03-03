@@ -4,9 +4,9 @@ metadata:
   name: {{ .Release.Name }}-django-media-pvc
   namespace: {{ .Values.namespace }}
 spec:
-  storageClassName: gp2
   accessModes:
     - ReadWriteOnce
+  storageClassName: gp2  
   volumeMode: Filesystem
   resources:
     requests:
