@@ -6,4 +6,3 @@ metadata:
 data:
   DB_HOST: "{{ .Release.Name }}-postgresql-service"
   ENV: "{{ .Values.environement }}"
-  DB_PORT: "5432"
