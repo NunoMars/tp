@@ -3,7 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: "{{ .Release.Name }}-postgresql-data-pvc"
 spec:
-  storageClassName: ebs-
+  storageClassName: ebs-sc
   accessModes:
     - ReadWriteOnce
   volumeMode: Filesystem
