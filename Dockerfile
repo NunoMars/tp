@@ -5,6 +5,12 @@ WORKDIR /app
 
 COPY /app /app/
 RUN pip install --no-cache-dir -r requirements.txt
+
+RUN python3 manage.py makemigrations
+RUN python3 manage.py migrate
+
+RUN python3 createsuperuser.py
+
 EXPOSE 5000
 
 # Commande pour démarrer l'application

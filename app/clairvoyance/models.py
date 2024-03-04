@@ -21,7 +21,7 @@ class MajorArcana(models.Model):
     card_image = models.ImageField(upload_to="MajorArcanaCards")
     card_polarity = models.CharField(max_length=10, choices=CHOICES, default="Positif")
 
-    def __str__(self):
+    def __unicode__(self):
         return self.card_name
 
     def image_tag(self):
@@ -36,7 +36,7 @@ class LeftDeck(models.Model):
 
     card_id = models.ForeignKey(MajorArcana, on_delete=models.CASCADE)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.card_id.card_name
 
 
@@ -45,5 +45,5 @@ class RightDeck(models.Model):
 
     card_id = models.ForeignKey(MajorArcana, on_delete=models.CASCADE)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.card_id.card_name

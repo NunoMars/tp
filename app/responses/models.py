@@ -7,7 +7,7 @@ class ResponsesBookEn(models.Model):
     sentence_title = models.TextField()
     sentence = models.TextField()
 
-    def __str__(self):
+    def __unicode__(self):
         return f"{self.sentence_title}"
 
 
@@ -17,7 +17,7 @@ class ResponsesBookFr(models.Model):
     sentence_title = models.TextField()
     sentence = models.TextField()
 
-    def __str__(self):
+    def __unicode__(self):
         return f"{self.sentence_title}"
 
 
@@ -27,7 +27,7 @@ class ResponsesBookPt(models.Model):
     sentence_title = models.TextField()
     sentence = models.TextField()
 
-    def __str__(self):
+    def __unicode__(self):
         return f"{self.sentence_title}"
 
 
@@ -37,5 +37,5 @@ class ResponsesBookEs(models.Model):
     sentence_title = models.TextField()
     sentence = models.TextField()
 
-    def __str__(self):
+    def __unicode__(self):
         return f"{self.sentence_title}"

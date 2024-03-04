@@ -16,5 +16,5 @@ class Sentences(models.Model):
         max_length=10, choices=CHOICES, default="Positif"
     )
 
-    def __str__(self):
+    def __unicode__(self):
         return f"{self.sentence}, {self.sentence_polarity}"
