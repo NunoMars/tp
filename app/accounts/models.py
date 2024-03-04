@@ -48,7 +48,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         full_name = f"{self.first_name} {self.second_name}"
         return full_name.strip()
 
-    def __unicode__(self):
+    def __str__(self):
         return self.email
 
 
