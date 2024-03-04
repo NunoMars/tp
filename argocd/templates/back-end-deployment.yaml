@@ -19,7 +19,12 @@ spec:
       - name: "{{ .Release.Name }}-back-container"
         image: "ghcr.io/nunomars/tp/{{ .Values.backendlabel }}:{{ .Values.defaultTag }}"      
         ports:
-        - containerPort: 5000   
+        - containerPort: 5000
+        command:
+        - "/bin/sh"
+        - "-c"
+        args:
+        - "python3 manage.py migrate && python3 create_superuser.py && gunicorn --bind 0.0.0.0:5000 siteVoyanceconfig.wsgi:application"       
         env:
           - name: POSTGRES_USER
             valueFrom:
