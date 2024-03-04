@@ -5,7 +5,7 @@ WORKDIR /app
 
 COPY /app /app/
 RUN pip install --no-cache-dir -r requirements.txt
-RUN python3 manage.py migrate
+
 EXPOSE 5000
 
 # Commande pour démarrer l'application
