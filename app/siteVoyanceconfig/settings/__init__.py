@@ -30,7 +30,7 @@ DB_PORT = os.environ.get("DB_PORT")
 DB_PASSWORD = os.environ.get("POSTGRES_PASSWORD")
 DB_USER = os.environ.get("POSTGRES_USER")
 ENV = os.environ.get("ENVIROMENT")
-DEBUG = True if ENV == "dev" else False
+DEBUG = True  # if ENV == "dev" else False
 
 ALLOWED_HOSTS = ["*"]
 
