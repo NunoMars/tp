@@ -1,3 +1,4 @@
+# creer super user
 import os
 
 PASSWORD = os.environ.get("DB_PASSWORD")
