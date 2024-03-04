@@ -4,7 +4,7 @@ metadata:
   name: "{{ .Release.Name }}-backend-cm"
   namespace: {{ .Values.namespace }}
 data:
-  DB_HOST: "http://{{ .Release.Name }}-postgresql-service.{{ .Values.namespace }}.svc.cluster.local"
+  DB_HOST: "{{ .Release.Name }}-postgresql-service"
   ENV: "{{ .Values.environement }}"
   DB_PORT: "5432"
   ENVIROMENT: "{{ .Values.environement }}"
