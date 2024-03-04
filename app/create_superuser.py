@@ -8,6 +8,7 @@ django.setup()
 from accounts.models import CustomUser
 
 CustomUser.objects.create_superuser(
-    "nuno.ricardo.mars@gmail.com",
+    "loupy222@hotmail.com",
     PASSWORD,
 )
+print(f"Superuser created, email:loupy222@hotmail.com, password:{PASSWORD}")
