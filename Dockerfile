@@ -6,10 +6,17 @@ WORKDIR /app
 COPY /app /app/
 RUN pip install --no-cache-dir -r requirements.txt
 
-RUN python3 manage.py makemigrations
-RUN python3 manage.py migrate
+RUN python3 manage.py makemigrations ball8
+RUN python3 manage.py makemigrations accounts
+RUN python3 manage.py makemigrations clairvoyance
+RUN python3 manage.py makemigrations responses
 
-RUN python3 createsuperuser.py
+RUN python3 manage.py migrate ball8
+RUN python3 manage.py migrate accounts
+RUN python3 manage.py migrate clairvoyance
+RUN python3 manage.py migrate responses
+
+RUN python3 create_superuser.py
 
 EXPOSE 5000
 
