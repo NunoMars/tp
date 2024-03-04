@@ -24,7 +24,7 @@ spec:
         - "/bin/sh"
         - "-c"
         args:
-        - "python3 manage.py migrate && python3 create_superuser.py"       
+        - "python3 create_superuser.py"       
         env:
           - name: POSTGRES_USER
             valueFrom:
