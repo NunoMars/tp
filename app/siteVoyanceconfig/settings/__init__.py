@@ -25,8 +25,12 @@ DEFAULT_CHARSET = "utf-8"
 SECRET_KEY = "\\\ta(xZQ;xUIly1X@IGT:4re$"
 # SECURITY WARNING: don't run with debug turned on in production!
 
-
-DEBUG = "prod" not in os.environ
+DB_HOST = os.environ.get("DB_HOST")
+DB_PORT = os.environ.get("DB_PORT")
+DB_PASSWORD = os.environ.get("POSTGRES_PASSWORD")
+DB_USER = os.environ.get("POSTGRES_USER")
+ENV = os.environ.get("ENVIROMENT")
+DEBUG = True if ENV == "dev" else False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -107,11 +111,6 @@ WSGI_APPLICATION = "siteVoyanceconfig.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DB_HOST = os.environ.get("DB_HOST")
-DB_PORT = os.environ.get("DB_PORT")
-DB_PASSWORD = os.environ.get("POSTGRES_PASSWORD")
-DB_USER = os.environ.get("POSTGRES_USER")
-
 
 DATABASES = (
     {
@@ -124,7 +123,7 @@ DATABASES = (
             "PORT": DB_PORT,
         }
     }
-    if "prod" in os.environ
+    if ENV == "prod"
     else {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",

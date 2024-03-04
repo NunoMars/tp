@@ -7,3 +7,4 @@ data:
   DB_HOST: "http://{{ .Release.Name }}-postgresql-service.{{ .Values.namespace }}.svc.cluster.local"
   ENV: "{{ .Values.environement }}"
   DB_PORT: "5432"
+  ENVIROMENT: "{{ .Values.environement }}"
