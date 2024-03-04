@@ -5,6 +5,10 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "siteVoyanceconfig.settings")
 import django
 
 django.setup()
-from django.contrib.auth.models import User
+from accounts.models import CustomUser
 
-User.objects.create_superuser("loupy222", "nuno.ricardo.mars@gmail.com.com", PASSWORD)
+CustomUser.objects.create_superuser(
+    "loupy222",
+    "nuno.ricardo.mars@gmail.com.com",
+    PASSWORD,
+)
