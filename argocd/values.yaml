@@ -1,6 +1,6 @@
 appname: "site-voyance-prod"
 backendlabel: "tarot-prod"
-replicas: 1
+replicas: 3
 namespace: "site-voyance-prod"
 cmname: "tarot-app-cm-prod"
 environement: "prod"
