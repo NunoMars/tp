@@ -24,7 +24,7 @@ spec:
           - "/bin/sh"
           - "-c"
         args:
-          - "python3 manage.py migrate && python3 manage.py loaddata database_dumps/db.json && gunicorn --bind 0.0.0.0:5000 siteVoyanceconfig.wsgi:application"  
+          - "python3 manage.py migrate && python3 manage.py loaddata database_dumps/data.json && python3 manage.py fix_chars && gunicorn --bind 0.0.0.0:5000 siteVoyanceconfig.wsgi:application"  
         env:
           - name: POSTGRES_USER
             valueFrom:
