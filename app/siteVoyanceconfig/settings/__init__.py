@@ -17,7 +17,6 @@ from pathlib import Path
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 
-DEFAULT_CHARSET = "utf-8"
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
@@ -121,13 +120,19 @@ DATABASES = (
             "PASSWORD": DB_PASSWORD,
             "HOST": DB_HOST,
             "PORT": DB_PORT,
+            "CHARDSET": "utf8",
         }
     }
     if ENV == "prod"
     else {
         "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": "VoyanceDB",
+            "USER": "nuno",
+            "PASSWORD": "Bcxau9p^^123.",
+            "HOST": "localhost",
+            "PORT": "5432",
+            "CHARDSET": "utf8",
         }
     }
 )

