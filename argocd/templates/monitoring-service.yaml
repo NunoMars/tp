@@ -5,14 +5,7 @@ metadata:
   namespace: {{ .Values.monitoring_namespace}}
 spec:
   selector:
-    matchLabels:
-      app: 
-      - grafana
-      - cadvisor
-      - nodeexporter
-      - pushgateway
-      - alertmanager
-      - prometheus
+    app: monitoring-deployment
   ports:
   - name: grafana
     protocol: TCP
