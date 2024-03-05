@@ -8,6 +8,6 @@ spec:
     storage: 5Gi
   accessModes:
     - ReadWriteMany
-  storageClassName: ebs-sc
+  storageClassName: gp2
   volumeMode: Filesystem
   awsElasticBlockStore: {}
