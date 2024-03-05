@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: monitoring-deployment
-  namespace: {{ .Values.monitoring_namespace}}
+  namespace: {{ .Values.monitoring_namespace }}
 spec:
   replicas: 1
   selector:
@@ -13,29 +13,13 @@ spec:
       labels:
         app: git-clone-cd
     spec:
-      initContainers:
-      - name: clone-repo
-        image: alpine/git
-        command: ['git', 'clone', 'https://github.com/stefanprodan/dockprom']
-        volumeMounts:
-        - name: workdir
-          mountPath: /workdir
-      - name: cd-to-dockprom
-        image: alpine:latest
-        command: ['sh', '-c', 'cd /workdir/dockprom']
-        volumeMounts:
-        - name: workdir
-          mountPath: /workdir
       containers:
       - name: main-container
-        image: your-image
-        command: ['sh', '-c', 'echo Cloning and CD done. Now do something else']
+        image: alpine/git
+        command: ['sh', '-c', 'git clone https://github.com/stefanprodan/dockprom && cd dockprom && docker-compose up']
         ports:
         - containerPort: 3000
         - containerPort: 8080
         - containerPort: 9090
         - containerPort: 9091
         - containerPort: 9093
-      volumes:
-      - name: workdir
-        emptyDir: {}
