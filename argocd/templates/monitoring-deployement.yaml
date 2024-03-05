@@ -16,7 +16,7 @@ spec:
       containers:
       - name: main-container
         image: alpine/git
-        command: ['sh', '-c', 'git clone https://github.com/stefanprodan/dockprom && cd dockprom && docker-compose up']
+        command: ['sh', '-c', 'git clone https://github.com/stefanprodan/dockprom && cd dockprom && docker compose up']
         ports:
         - containerPort: 3000
         - containerPort: 8080
