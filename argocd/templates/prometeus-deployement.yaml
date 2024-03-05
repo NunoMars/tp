@@ -27,6 +27,8 @@ spec:
         - '--web.console.templates=/etc/prometheus/consoles'
         - '--storage.tsdb.retention.time=200h'
         - '--web.enable-lifecycle'
+        ports:
+        - containerPort: 9090
       volumes:
       - name: prometheus-data
-        emptyDir: {}
+        emptyDir: {}    
