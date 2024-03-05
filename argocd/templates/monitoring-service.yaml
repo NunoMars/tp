@@ -7,19 +7,28 @@ spec:
   selector:
     app: git-clone-cd
   ports:
-  - protocol: TCP
-    port: 80
+  - name: grafana
+    protocol: TCP
+    port: 3000
     targetPort: 3000
-  - protocol: TCP
+  - name: cadvisor
+    protocol: TCP
     port: 8080
     targetPort: 8080
-  - protocol: TCP
-    port: 9090
-    targetPort: 9090
-  - protocol: TCP
+  - name: nodeexporter
+    protocol: TCP
+    port: 9100
+    targetPort: 9100
+  - name: pushgateway
+    protocol: TCP
     port: 9091
     targetPort: 9091
-  - protocol: TCP
+  - name: alertmanager
+    protocol: TCP
     port: 9093
     targetPort: 9093
+  - name: prometheus
+    protocol: TCP
+    port: 9090
+    targetPort: 9090
   type: LoadBalancer
