@@ -4,8 +4,8 @@ FROM python:3.11
 WORKDIR /app
 
 COPY /app /app/
-RUN pip install --no-cache-dir -r requirements.txt
-RUN python3 manage.py migrate
+RUN pip install --no-cache-dir -r requirements.txt && python3 manage.py migrate
+
 EXPOSE 5000
 
 # Commande pour démarrer l'application

@@ -74,8 +74,8 @@ def clairvoyante(request):
                 result = {"message": f"Superuser not created, error: {e}"}
                 pass
 
-        result = clairvoyant(input_value)
-        return JsonResponse(result)
+        # result = clairvoyant(input_value)
+        # return JsonResponse(result)
 
 
 @login_required
