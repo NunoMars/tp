@@ -5,11 +5,10 @@ from django.contrib.auth.decorators import login_required
 
 from clairvoyance.logic import clairvoyant
 from .models import MajorArcana
-from accounts.models import CustomUser, History, DailySortedCards
+from accounts.models import History, DailySortedCards
 from django.views.generic.base import TemplateView
 from django.views import View
 from django.http import Http404
-from django.contrib.auth import get_user_model
 
 
 class IndexView(TemplateView):
