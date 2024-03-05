@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: Monitoring-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: git-clone-cd
+  template:
+    metadata:
+      labels:
+        app: git-clone-cd
+    spec:
+      initContainers:
+      - name: clone-repo
+        image: alpine/git
+        command: ['git', 'clone', 'https://github.com/stefanprodan/dockprom']
+        volumeMounts:
+        - name: workdir
+          mountPath: /workdir
+      - name: cd-to-dockprom
+        image: alpine:latest
+        command: ['sh', '-c', 'cd /workdir/dockprom']
+        volumeMounts:
+        - name: workdir
+          mountPath: /workdir
+      containers:
+      - name: main-container
+        image: your-image
+        command: ['sh', '-c', 'echo Cloning and CD done. Now do something else']
+        ports:
+        - containerPort: 3000
+        - containerPort: 8080
+        - containerPort: 9090
+        - containerPort: 9091
+        - containerPort: 9093
+      volumes:
+      - name: workdir
+        emptyDir: {}
