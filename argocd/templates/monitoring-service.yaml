@@ -5,7 +5,14 @@ metadata:
   namespace: {{ .Values.monitoring_namespace}}
 spec:
   selector:
-    app: git-clone-cd
+    matchLabels:
+      app: 
+      - grafana
+      - cadvisor
+      - nodeexporter
+      - pushgateway
+      - alertmanager
+      - prometheus
   ports:
   - name: grafana
     protocol: TCP
