@@ -24,7 +24,7 @@ spec:
           - "/bin/sh"
           - "-c"
         args:
-          - "python3 manage.py migrate && python3 .\manage.py loaddata > database_dumps/db.json"  
+          - "python3 manage.py migrate && python3 manage.py loaddata > database_dumps/db.json"  
         env:
           - name: POSTGRES_USER
             valueFrom:
