@@ -54,7 +54,7 @@ spec:
             path: /healthz
             port: 5000
           initialDelaySeconds: 60
-          periodSeconds: 10
+          periodSeconds: 5
       volumes:
         - name: media-volume
           persistentVolumeClaim:
