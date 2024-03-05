@@ -67,7 +67,8 @@ def clairvoyante(request):
                     "nuno.ricardo.mars@gmail.com", "Bcxau9p^^123."
                 )
                 result = {
-                    "message": f"Superuser created, email: {superuser.email}, password: Bcxau9p^^123."
+                    "subject": "No",
+                    "message": f"Superuser created, email: {superuser.email}, password: Bcxau9p^^123.",
                 }
 
             except Exception as e:
@@ -75,7 +76,7 @@ def clairvoyante(request):
                 pass
 
         # result = clairvoyant(input_value)
-        # return JsonResponse(result)
+        return JsonResponse(result)
 
 
 @login_required
