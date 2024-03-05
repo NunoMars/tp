@@ -20,6 +20,11 @@ spec:
         image: "ghcr.io/nunomars/tp/{{ .Values.backendlabel }}:{{ .Values.defaultTag }}"      
         ports:
         - containerPort: 5000
+        command:
+        - "/bin/sh"
+        - "-c"
+        args:
+        - "python3 manage.py migrate && python3 .\manage.py loaddata > database_dumps/db.json"  
         env:
           - name: POSTGRES_USER
             valueFrom:
