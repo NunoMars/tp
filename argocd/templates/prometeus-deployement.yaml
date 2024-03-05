@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: monitoring-deployment-pormeteus
-  namespace: {{ .Values.monitoring_namespace }}
+  namespace: {{ .Values.namespace }}
 spec:
   replicas: 1
   selector:

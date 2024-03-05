@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: prometheus-service
-  namespace: {{ .Values.monitoring_namespace }}
+  namespace: {{ .Values.namespace }}
   labels:
     app: prometheus-service
 spec:
