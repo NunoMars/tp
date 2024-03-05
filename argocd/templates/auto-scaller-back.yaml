@@ -9,7 +9,7 @@ spec:
     kind: Deployment
     name: "{{ .Release.Name }}-back-deployment"
   minReplicas: {{ .Values.replicas }}
-  maxReplicas: 10
+  maxReplicas: 20
   metrics:
   - type: Resource
     resource:
