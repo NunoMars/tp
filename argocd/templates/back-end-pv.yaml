@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ .Release.Name }}-django-media-pv
+spec:
+  capacity:
+    storage: {{ .Values.efs.storage_capacity }}
+  volumeMode: Filesystem
+  accessModes:
+    - {{ .Values.efs.access_mode }}
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: {{ .Values.efs.storage_class }}
+  nfs:
+    server: {{ .Values.efs.dns_name }}
+    path: "/"

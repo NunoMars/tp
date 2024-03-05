@@ -10,12 +10,9 @@ defaultTag: latest
 host: "site-voyance-prod.devops.oclock.school"
 POSTGRES_DB: "VoyanceDB"
 monitoring_namespace: "monitoring"
-imageVersions:
-  prometheus: prom/prometheus:v2.48.0
-  alertmanager: prom/alertmanager:v0.26.0
-  nodeExporter: prom/node-exporter:v1.7.0
-  cadvisor: gcr.io/cadvisor/cadvisor:v0.47.2
-  grafana: grafana/grafana:10.2.2
-  pushgateway: prom/pushgateway:v1.6.2
-  caddy: caddy:2.7.5
+efs:
+  dns_name: "fs-09e74fe30f87574e3.efs.eu-west-3.amazonaws.com"
+  storage_capacity: "5Gi"
+  storage_class: "efs-storage-class"
+  access_mode: "ReadWriteMany"
 
