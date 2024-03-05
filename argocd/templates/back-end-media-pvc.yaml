@@ -6,7 +6,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: ebs-sc
+  storageClassName: "nfs"
   volumeMode: Filesystem
   resources:
     requests:
