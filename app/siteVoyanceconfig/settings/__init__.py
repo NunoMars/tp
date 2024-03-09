@@ -29,6 +29,9 @@ DB_PORT = os.environ.get("DB_PORT")
 DB_PASSWORD = os.environ.get("POSTGRES_PASSWORD")
 DB_USER = os.environ.get("POSTGRES_USER")
 ENV = os.environ.get("ENVIROMENT")
+REDIS_HOST = os.environ.get("REDIS_HOST")
+REDIS_PORT = os.environ.get("REDIS_PORT")
+REDIS_BD_PASSWORD = os.environ.get("POSTGRES_PASSWORD")
 DEBUG = True  # if ENV == "dev" else False
 
 ALLOWED_HOSTS = ["*"]
@@ -110,6 +113,17 @@ WSGI_APPLICATION = "siteVoyanceconfig.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+
+SESSION_ENGINE = "redis_sessions.session"
+SESSION_REDIS = {
+    "host": REDIS_HOST,
+    "port": REDIS_PORT,
+    "db": 0,
+    "password": REDIS_BD_PASSWORD,
+    "prefix": "session",
+    "socket_timeout": 1,
+    "retry_on_timeout": False,
+}
 
 DATABASES = (
     {

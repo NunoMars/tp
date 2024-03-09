@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-redis-deployment
+  labels:
+    app: {{ .Release.Name }}-redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-redis
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-redis
+    spec:
+      containers:
+      - name: {{ .Release.Name }}-redis
+        image: redis:latest
+        env:
+        - name: REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: "{{ .Release.Name }}-postgresql-credentials"
+              key: POSTGRES_PASSWORD
+        ports:
+        - containerPort: 6379

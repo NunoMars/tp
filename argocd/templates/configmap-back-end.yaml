@@ -8,4 +8,6 @@ data:
   ENV: "{{ .Values.environement }}"
   DB_PORT: "5432"
   ENVIROMENT: "{{ .Values.environement }}"
+  REDIS_HOST: "{{ .Release.Name }}-redis-service"
+  REDIS_PORT: "6379"
   
