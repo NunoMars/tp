@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-jaeger
+  labels:
+    app: {{ .Release.Name }}-jaeger
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-jaeger
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-jaeger
+    spec:
+      containers:
+      - name: {{ .Release.Name }}-jaeger
+        image: jaegertracing/all-in-one:latest
+        ports:
+        - containerPort: 16686
+        - containerPort: 6831
+          protocol: UDP

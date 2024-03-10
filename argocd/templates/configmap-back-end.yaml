@@ -10,4 +10,7 @@ data:
   ENVIROMENT: "{{ .Values.environement }}"
   REDIS_HOST: "{{ .Release.Name }}-redis-service"
   REDIS_PORT: "6379"
+  JAEGER_AGENT_HOST: "{{ .Release.Name }}-jaeger-service"
+  JAEGER_AGENT_PORT: "6831"
+  JAEGER_SERVICE_NAME: "site-voyance"
   

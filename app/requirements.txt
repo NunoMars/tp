@@ -101,3 +101,5 @@ whitenoise
 # setuptools
 django-prometheus
     # via -r requirements.in
+django-opentracing
+jaeger-client

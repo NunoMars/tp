@@ -12,3 +12,7 @@ data:
       url: http://{{ .Release.Name }}-prometheus-service:9090
       access: proxy
       isDefault: true
+    - name: Jaeger
+      type: jaeger
+      url: http://{{ .Release.Name }}-jaeger:80
+      access: proxy
