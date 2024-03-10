@@ -13,6 +13,10 @@ spec:
     metadata:
       labels:
         app: {{ .Release.Name }}-postgresql
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: "/metrics"
+        prometheus.io/port: "9187"
     spec:
       containers:
       - name: postgresql
@@ -36,8 +40,15 @@ spec:
         - name: postgresql-persistent-storage
           mountPath: /var/lib/postgresql/data
           subPath: postgres
+      - name: postgres-exporter
+        image: wrouesnel/postgres_exporter
+        ports:
+        - name: exporter
+          containerPort: 9187
+        env:
+        - name: DATA_SOURCE_NAME
+          value: postgresql://$(POSTGRES_USER):$(POSTGRES_PASSWORD)@localhost:5432/$(POSTGRES_DB)?sslmode=disable
       volumes:
       - name: postgresql-persistent-storage
         persistentVolumeClaim:
           claimName: {{ .Release.Name }}-postgresql-pvc
-

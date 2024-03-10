@@ -3,6 +3,7 @@ from django.urls import path, include
 from clairvoyance.views import IndexView, contacts
 from django.conf import settings
 from django.conf.urls.static import static
+from django_prometheus import exports
 
 
 urlpatterns = [
@@ -14,4 +15,5 @@ urlpatterns = [
     path("ball8/", include("ball8.urls")),
     path("contacts", contacts, name="contacts"),
     path("healthz", include("health_check.urls")),
+    path("metrics", exports.ExportToDjangoView),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

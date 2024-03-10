@@ -13,6 +13,10 @@ spec:
     metadata:
       labels:
         app: {{ .Release.Name }}-redis
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: "/metrics"
+        prometheus.io/port: "9121"
     spec:
       containers:
       - name: {{ .Release.Name }}-redis
@@ -25,3 +29,16 @@ spec:
               key: POSTGRES_PASSWORD
         ports:
         - containerPort: 6379
+      - name: redis-exporter
+        image: oliver006/redis_exporter
+        ports:
+        - name: exporter
+          containerPort: 9121
+        env:
+        - name: REDIS_ALIAS
+          value: localhost
+        - name: REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: "{{ .Release.Name }}-postgresql-credentials"
+              key: POSTGRES_PASSWORD

@@ -8,9 +8,10 @@ metadata:
 spec:
   selector:
     app: "{{ .Release.Name }}-back-deployment"
-  type: ClusterIP # ou NodePort
+  type: NodePort
   ports:
   - name: "http"
     port: 80
     protocol: TCP
     targetPort: 5000
+    nodePort: 30080

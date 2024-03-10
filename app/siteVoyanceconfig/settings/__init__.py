@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "import_export",
     "responses.apps.ResponsesConfig",
     "health_check",
+    "django-prometheus",
 ]
 
 
@@ -77,6 +78,7 @@ EMAIL_HOST_PASSWORD = "Ruben1Mara2"  # os.environ.get("EMAIL_HOST_PASSWORD")
 ###################################################
 
 MIDDLEWARE = [
+    "django_prometheus.middleware.PrometheusBeforeMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -86,6 +88,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
+    "django_prometheus.middleware.PrometheusAfterMiddleware",
 ]
 
 ROOT_URLCONF = "siteVoyanceconfig.urls"

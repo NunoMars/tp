@@ -1,17 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: monitoring-deployment
+  name: {{ .Release.Name }}-prometheus-deployment
   namespace: {{ .Values.namespace }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: monitoring
+      app: {{ .Release.Name }}-prometheus
   template:
     metadata:
       labels:
-        app: monitoring
+        app: {{ .Release.Name }}-prometheus
     spec:
       containers:
       - name: prometheus-container
@@ -19,6 +19,8 @@ spec:
         volumeMounts:
         - name: prometheus-data
           mountPath: /prometheus
+        - name: prometheus-config-volume
+          mountPath: /etc/prometheus
         command:
         - '/bin/prometheus'
         - '--config.file=/etc/prometheus/prometheus.yml'
@@ -28,27 +30,9 @@ spec:
         - '--storage.tsdb.retention.time=200h'
         - '--web.enable-lifecycle'
         ports:
-        - containerPort: 9090
-      - name: grafana-container
-        image: grafana/grafana:latest
-        ports:
-        - containerPort: 3000
-      - name: cadvisor-container
-        image: google/cadvisor:latest
-        ports:
-        - containerPort: 8080
-      - name: nodeexporter-container
-        image: prom/node-exporter:latest
-        ports:
-        - containerPort: 9100
-      - name: pushgateway-container
-        image: prom/pushgateway:latest
-        ports:
-        - containerPort: 9091
-      - name: alertmanager-container
-        image: prom/alertmanager:latest
-        ports:
-        - containerPort: 9093
       volumes:
       - name: prometheus-data
         emptyDir: {}
+      - name: prometheus-config-volume
+        configMap:
+          name: {{ .Release.Name }}-prometheus-config

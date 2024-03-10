@@ -99,3 +99,5 @@ whitenoise
 # The following packages are considered to be unsafe in a requirements file:
 # pip
 # setuptools
+django-prometheus
+    # via -r requirements.in
