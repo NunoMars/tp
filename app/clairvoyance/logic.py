@@ -74,20 +74,13 @@ def clairvoyant(input_value):
 
 
 def _get_response_one_card(rand_card):
-
-    card_name = rand_card.card_name
-    card_signification_warnings = rand_card.card_signification_warnings
-    card_signification_love = rand_card.card_signification_love
-    card_signification_work = rand_card.card_signification_work
-    card_signification_gen = rand_card.card_signification_gen
-
     return {
         "subject": "one_card",
         "user_name": user_name,
         "card_image": rand_card.card_image.url,
-        "card_name": card_name,
-        "card_signification_warnings": card_signification_warnings,
-        "card_signification_love": card_signification_love,
-        "card_signification_work": card_signification_work,
-        "card_signification_gen": card_signification_gen,
+        "card_name": rand_card.card_name,
+        "card_signification_warnings": rand_card.card_signification_warnings,
+        "card_signification_love": rand_card.card_signification_love,
+        "card_signification_work": rand_card.card_signification_work,
+        "card_signification_gen": rand_card.card_signification_gen,
     }
