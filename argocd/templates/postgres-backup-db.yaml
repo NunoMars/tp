@@ -12,11 +12,12 @@ spec:
           - name: backup
             image: postgres:14.5
             command:
-            - /bin/sh
-            - -c
-            - |
-              pg_dump -U $POSTGRES_USER -d $POSTGRES_DB > /backup/backup.sql
-              aws s3 cp /backup/backup.sql s3://db-backup-site-voyance/backup.sql
+              - /bin/sh
+              - -c
+              - |
+                DATE=$(date +%Y%m%d)
+                pg_dump -U $POSTGRES_USER -d $POSTGRES_DB > /backup/backup_$DATE.sql
+                aws s3 cp /backup/backup_$DATE.sql s3://db-backup-site-voyance/backup_$DATE.sql
             env:
             env:
             - name: POSTGRES_DB
@@ -41,11 +42,4 @@ spec:
                     secretKeyRef:
                         name: "{{ .Release.Name }}-postgresql-credentials"
                         key: AWS_SECRET_ACCESS_KEY
-            volumeMounts:
-            - name: backup
-              mountPath: /backup
-          volumes:
-          - name: backup
-            persistentVolumeClaim:
-              claimName: {{ .Release.Name }}-backup-pvc
           restartPolicy: OnFailure
