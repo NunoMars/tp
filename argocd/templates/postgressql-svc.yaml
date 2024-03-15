@@ -8,6 +8,7 @@ spec:
     app: {{ .Release.Name }}-postgresql
   ports:
     - protocol: TCP
+      name: postgres
       port: 5432
       targetPort: 5432
     - protocol: TCP
