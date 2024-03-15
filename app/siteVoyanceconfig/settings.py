@@ -2,7 +2,7 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
+BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
@@ -15,8 +15,8 @@ DB_PORT = os.environ.get("DB_PORT")
 DB_PASSWORD = os.environ.get("POSTGRES_PASSWORD")
 DB_USER = os.environ.get("POSTGRES_USER")
 ENV = os.environ.get("ENVIROMENT")
-REDIS_HOST = os.environ.get("REDIS_HOST")
-REDIS_PORT = os.environ.get("REDIS_PORT")
+REDIS_HOST = os.environ.get("REDIS_HOST", "localhost")
+REDIS_PORT = os.environ.get("REDIS_PORT", 6379)
 REDIS_BD_PASSWORD = os.environ.get("POSTGRES_PASSWORD")
 DEBUG = True  # if ENV == "dev" else False
 
@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     "import_export",
     "responses.apps.ResponsesConfig",
     "health_check",
-    "django-prometheus",
+    "django_prometheus",
 ]
 
 
@@ -76,7 +76,6 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django_prometheus.middleware.PrometheusAfterMiddleware",
-    "django_opentracing.OpenTracingMiddleware",
 ]
 
 ROOT_URLCONF = "siteVoyanceconfig.urls"

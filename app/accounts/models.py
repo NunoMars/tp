@@ -29,7 +29,9 @@ class CustomUserManager(BaseUserManager):
         return self.create_user(email, password, **extra_fields)
 
 
-class CustomUser(AbstractBaseUser, PermissionsMixin, ExportModelOperationsMixin):
+class CustomUser(
+    AbstractBaseUser, PermissionsMixin, ExportModelOperationsMixin("CustomUser")
+):
     first_name = models.CharField(max_length=254, blank=True)
     second_name = models.CharField(max_length=254, blank=True)
     is_staff = models.BooleanField(default=False)
@@ -53,7 +55,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin, ExportModelOperationsMixin)
         return self.email
 
 
-class History(models.Model, ExportModelOperationsMixin):
+class History(models.Model, ExportModelOperationsMixin("History")):
     """Class to define the History table."""
 
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
@@ -65,7 +67,7 @@ class History(models.Model, ExportModelOperationsMixin):
         db_table = "history"
 
 
-class DailySortedCards(models.Model, ExportModelOperationsMixin):
+class DailySortedCards(models.Model, ExportModelOperationsMixin("DailySortedCards")):
     """
     rec the daily_cards
     """

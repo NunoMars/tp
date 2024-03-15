@@ -3,7 +3,7 @@ from django.utils.safestring import mark_safe
 from django_prometheus.models import ExportModelOperationsMixin
 
 
-class MajorArcana(models.Model, ExportModelOperationsMixin):
+class MajorArcana(models.Model, ExportModelOperationsMixin("MajorArcana")):
     """Class to define the mayor cards deck."""
 
     CHOICES = (
@@ -32,7 +32,7 @@ class MajorArcana(models.Model, ExportModelOperationsMixin):
     image_tag.short_description = "Image"
 
 
-class LeftDeck(models.Model, ExportModelOperationsMixin):
+class LeftDeck(models.Model, ExportModelOperationsMixin("LeftDeck")):
     """Class to define the left deck."""
 
     card_id = models.ForeignKey(MajorArcana, on_delete=models.CASCADE)
@@ -41,7 +41,7 @@ class LeftDeck(models.Model, ExportModelOperationsMixin):
         return self.card_id.card_name
 
 
-class RightDeck(models.Model, ExportModelOperationsMixin):
+class RightDeck(models.Model, ExportModelOperationsMixin("RightDeck")):
     """Class to define the right deck."""
 
     card_id = models.ForeignKey(MajorArcana, on_delete=models.CASCADE)
