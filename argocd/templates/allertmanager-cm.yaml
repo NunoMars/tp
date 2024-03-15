@@ -8,9 +8,21 @@ data:
     global:
       resolve_timeout: 5m
       smtp_smarthost: smtp.gmail.com:587
-      smtp_from: {{ .Secrets.email_username }}
-      smtp_auth_username: {{ .Secrets.email_username }}
-      smtp_auth_password: {{ .Secrets.email_password }}
+      smtp_from: 
+        valueFrom:
+          secretKeyRef:
+            name: {{ .Release.Name }}-alertmanager-smtp-secret
+            key: email_username
+      smtp_auth_username: 
+        valueFrom:
+          secretKeyRef:
+            name: {{ .Release.Name }}-alertmanager-smtp-secret
+            key: email_username
+      smtp_auth_password: 
+        valueFrom:
+          secretKeyRef:
+            name: {{ .Release.Name }}-alertmanager-smtp-secret
+            key: email_password
       smtp_require_tls: true
     route:
       group_by: ['alertname', 'cluster', 'service']
@@ -21,4 +33,8 @@ data:
     receivers:
     - name: 'email-config'
       email_configs:
-      - to: {{ .Secrets.email_username }}
+      - to: 
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-alertmanager-smtp-secret
+              key: email_username
