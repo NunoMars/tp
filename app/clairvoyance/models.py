@@ -1,8 +1,9 @@
 from django.db import models
 from django.utils.safestring import mark_safe
+from django_prometheus.models import ExportModelOperationsMixin
 
 
-class MajorArcana(models.Model):
+class MajorArcana(models.Model, ExportModelOperationsMixin):
     """Class to define the mayor cards deck."""
 
     CHOICES = (
@@ -26,12 +27,12 @@ class MajorArcana(models.Model):
 
     def image_tag(self):
 
-        return mark_safe('<img src="%s" width="75" height="75" />' % (self.card_image))
+        return mark_safe(f'<img src="{self.card_image}" width="75" height="75" />')
 
     image_tag.short_description = "Image"
 
 
-class LeftDeck(models.Model):
+class LeftDeck(models.Model, ExportModelOperationsMixin):
     """Class to define the left deck."""
 
     card_id = models.ForeignKey(MajorArcana, on_delete=models.CASCADE)
@@ -40,7 +41,7 @@ class LeftDeck(models.Model):
         return self.card_id.card_name
 
 
-class RightDeck(models.Model):
+class RightDeck(models.Model, ExportModelOperationsMixin):
     """Class to define the right deck."""
 
     card_id = models.ForeignKey(MajorArcana, on_delete=models.CASCADE)

@@ -46,8 +46,6 @@ gunicorn==21.2.0
     # via -r requirements.in
 import-export==0.3.1
     # via -r requirements.in
-jaeger-client==4.8.0
-    # via -r requirements.in
 markuppy==1.14
     # via
     #   -r requirements.in

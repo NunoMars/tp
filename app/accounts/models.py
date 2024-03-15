@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.models import PermissionsMixin
 from django.utils.timezone import now
 from clairvoyance.models import MajorArcana
+from django_prometheus.models import ExportModelOperationsMixin
 
 
 class CustomUserManager(BaseUserManager):
@@ -28,7 +29,7 @@ class CustomUserManager(BaseUserManager):
         return self.create_user(email, password, **extra_fields)
 
 
-class CustomUser(AbstractBaseUser, PermissionsMixin):
+class CustomUser(AbstractBaseUser, PermissionsMixin, ExportModelOperationsMixin):
     first_name = models.CharField(max_length=254, blank=True)
     second_name = models.CharField(max_length=254, blank=True)
     is_staff = models.BooleanField(default=False)
@@ -52,7 +53,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         return self.email
 
 
-class History(models.Model):
+class History(models.Model, ExportModelOperationsMixin):
     """Class to define the History table."""
 
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
@@ -64,7 +65,7 @@ class History(models.Model):
         db_table = "history"
 
 
-class DailySortedCards(models.Model):
+class DailySortedCards(models.Model, ExportModelOperationsMixin):
     """
     rec the daily_cards
     """

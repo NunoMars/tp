@@ -23,4 +23,3 @@ gunicorn
 whitenoise
 django-prometheus
 django-opentracing
-jaeger-client

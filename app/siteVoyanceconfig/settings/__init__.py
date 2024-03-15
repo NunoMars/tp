@@ -1,13 +1,8 @@
 import os
 from pathlib import Path
 
-from jaeger_client import Config
-from django_opentracing import DjangoTracing
-
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
@@ -24,9 +19,6 @@ REDIS_HOST = os.environ.get("REDIS_HOST")
 REDIS_PORT = os.environ.get("REDIS_PORT")
 REDIS_BD_PASSWORD = os.environ.get("POSTGRES_PASSWORD")
 DEBUG = True  # if ENV == "dev" else False
-JAEGER_AGENT_HOST = os.environ.get("JAEGER_AGENT_HOST", "localhost")
-JAEGER_AGENT_PORT = os.environ.get("JAEGER_AGENT_PORT", 6831)
-JAEGER_SERVICE_NAME = os.environ.get("JAEGER_SERVICE_NAME", "site-voyance")
 
 
 ALLOWED_HOSTS = ["*"]
@@ -127,7 +119,7 @@ SESSION_REDIS = {
 DATABASES = (
     {
         "default": {
-            "ENGINE": "django.db.backends.postgresql",
+            "ENGINE": "django_prometheus.db.backends.postgresql",
             "NAME": "VoyanceDB",
             "USER": DB_USER,
             "PASSWORD": DB_PASSWORD,
@@ -139,7 +131,7 @@ DATABASES = (
     if ENV == "prod"
     else {
         "default": {
-            "ENGINE": "django.db.backends.postgresql",
+            "ENGINE": "django_prometheus.db.backends.postgresql",
             "NAME": "VoyanceDB",
             "USER": "nuno",
             "PASSWORD": "Bcxau9p^^123.",
@@ -194,23 +186,22 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 #############################################################
 
-###################JAEGER##################################
-
-JAEGER_CONFIG = {
-    "sampler": {
-        "type": "const",
-        "param": 1,
-    },
-    "local_agent": {
-        "reporting_host": JAEGER_AGENT_HOST,
-        "reporting_port": JAEGER_AGENT_PORT,
-    },
-    "logging": True,
-}
-
-config = Config(config=JAEGER_CONFIG, service_name=JAEGER_SERVICE_NAME, validate=True)
-jaeger_tracer = config.initialize_tracer()
-OPENTRACING_TRACE_ALL = True
-OPENTRACING_TRACER = DjangoTracing(jaeger_tracer)
-
-#############################################################
+PROMETHEUS_LATENCY_BUCKETS = (
+    0.01,
+    0.025,
+    0.05,
+    0.075,
+    0.1,
+    0.25,
+    0.5,
+    0.75,
+    1.0,
+    2.5,
+    5.0,
+    7.5,
+    10.0,
+    25.0,
+    50.0,
+    75.0,
+    float("inf"),
+)

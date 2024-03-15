@@ -1,7 +1,8 @@
 from django.db import models
+from django_prometheus.models import ExportModelOperationsMixin
 
 
-class ResponsesBookEn(models.Model):
+class ResponsesBookEn(models.Model, ExportModelOperationsMixin):
     """Class to define the response sentences."""
 
     sentence_title = models.TextField()
@@ -11,7 +12,7 @@ class ResponsesBookEn(models.Model):
         return f"{self.sentence_title}"
 
 
-class ResponsesBookFr(models.Model):
+class ResponsesBookFr(models.Model, ExportModelOperationsMixin):
     """Class to define the response sentences."""
 
     sentence_title = models.TextField()
@@ -21,7 +22,7 @@ class ResponsesBookFr(models.Model):
         return f"{self.sentence_title}"
 
 
-class ResponsesBookPt(models.Model):
+class ResponsesBookPt(models.Model, ExportModelOperationsMixin):
     """Class to define the response sentences."""
 
     sentence_title = models.TextField()
@@ -31,7 +32,7 @@ class ResponsesBookPt(models.Model):
         return f"{self.sentence_title}"
 
 
-class ResponsesBookEs(models.Model):
+class ResponsesBookEs(models.Model, ExportModelOperationsMixin):
     """Class to define the response sentences."""
 
     sentence_title = models.TextField()

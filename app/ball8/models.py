@@ -1,9 +1,10 @@
 from django.db import models
+from django_prometheus.models import ExportModelOperationsMixin
 
 # Create your models here.
 
 
-class Sentences(models.Model):
+class Sentences(models.Model, ExportModelOperationsMixin):
     """Class to define the response sentences."""
 
     CHOICES = (
