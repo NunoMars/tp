@@ -6,35 +6,39 @@ metadata:
 data:
   alertmanager.yaml: |
     global:
-      resolve_timeout: 5m
-      smtp_smarthost: smtp.gmail.com:587
-      smtp_from: 
-        valueFrom:
-          secretKeyRef:
-            name: {{ .Release.Name }}-alertmanager-smtp-secret
-            key: email_username
-      smtp_auth_username: 
-        valueFrom:
-          secretKeyRef:
-            name: {{ .Release.Name }}-alertmanager-smtp-secret
-            key: email_username
-      smtp_auth_password: 
-        valueFrom:
-          secretKeyRef:
-            name: {{ .Release.Name }}-alertmanager-smtp-secret
-            key: email_password
-      smtp_require_tls: true
+      resolve_timeout: 1m
+
     route:
-      group_by: ['alertname', 'cluster', 'service']
-      group_wait: 30s
-      group_interval: 5m
-      repeat_interval: 3h 
-      receiver: 'email-config'
+      receiver: 'gmail-notifications'
+
     receivers:
-    - name: 'email-config'
+    - name: 'gmail-notifications'
       email_configs:
-      - to: 
+      - to:
           valueFrom:
             secretKeyRef:
               name: {{ .Release.Name }}-alertmanager-smtp-secret
               key: email_username
+        from:
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-alertmanager-smtp-secret
+              key: email_username
+        smarthost: 'smtp.gmail.com:587'
+        auth_username:
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-alertmanager-smtp-secret
+              key: email_username
+        auth_identity:
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-alertmanager-smtp-secret
+              key: email_username
+        auth_password:
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-alertmanager-smtp-secret
+              key: email_password
+        send_resolved: true
+        require_tls: true
