@@ -28,3 +28,15 @@ spec:
       - name: alertmanager-config-volume
         configMap:
           name: {{ .Release.Name }}-alertmanager-config
+      - name: smtp-username
+        secret:
+          secretName: {{ .Release.Name }}-alertmanager-smtp-secret
+          items:
+          - key: email_username
+            path: email_username
+      - name: smtp-password
+        secret:
+          secretName: {{ .Release.Name }}-alertmanager-smtp-secret
+          items:
+          - key: email_password
+            path: email_password

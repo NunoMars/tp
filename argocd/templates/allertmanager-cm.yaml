@@ -7,6 +7,11 @@ data:
   alertmanager.yaml: |
     global:
       resolve_timeout: 5m
+      smtp_smarthost: smtp.gmail.com:587
+      smtp_from: {{ .Secrets.email_username }}
+      smtp_auth_username: {{ .Secrets.email_username }}
+      smtp_auth_password: {{ .Secrets.email_password }}
+      smtp_require_tls: true
     route:
       group_by: ['alertname', 'cluster', 'service']
       group_wait: 30s
@@ -16,4 +21,4 @@ data:
     receivers:
     - name: 'email-config'
       email_configs:
-      - to: 'nuno.ricardo.mars@gmail.com'
+      - to: {{ .Secrets.email_username }}
