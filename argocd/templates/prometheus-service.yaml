@@ -5,7 +5,7 @@ metadata:
   namespace: {{ .Values.namespace }}
 spec:
   selector:
-    app: {{ .Release.Name }}-prometheus-deployment
+    app: {{ .Release.Name }}-prometheus
   ports:
   - name: {{ .Release.Name }}-prometheus
     protocol: TCP
