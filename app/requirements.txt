@@ -31,7 +31,12 @@ django==4.2.7
     #   -r requirements.in
     #   dj-database-url
     #   django-import-export
+    #   django-opentracing
 django-import-export==3.3.3
+    # via -r requirements.in
+django-opentracing==1.1.0
+    # via -r requirements.in
+django-prometheus==2.3.1
     # via -r requirements.in
 et-xmlfile==1.1.0
     # via
@@ -40,6 +45,8 @@ et-xmlfile==1.1.0
 gunicorn==21.2.0
     # via -r requirements.in
 import-export==0.3.1
+    # via -r requirements.in
+jaeger-client==4.8.0
     # via -r requirements.in
 markuppy==1.14
     # via
@@ -53,6 +60,10 @@ openpyxl==3.1.2
     # via
     #   -r requirements.in
     #   tablib
+opentracing==2.4.0
+    # via
+    #   django-opentracing
+    #   jaeger-client
 packaging==23.2
     # via
     #   build
@@ -61,6 +72,8 @@ pillow==10.1.0
     # via -r requirements.in
 pip-tools==7.3.0
     # via -r requirements.in
+prometheus-client==0.20.0
+    # via django-prometheus
 psycopg2==2.9.9
     # via -r requirements.in
 pyproject-hooks==1.0.0
@@ -69,6 +82,10 @@ pyyaml==6.0.1
     # via
     #   -r requirements.in
     #   tablib
+six==1.16.0
+    # via
+    #   django-opentracing
+    #   thrift
 sqlparse==0.4.4
     # via
     #   -r requirements.in
@@ -77,6 +94,14 @@ tablib[html,ods,xls,xlsx,yaml]==3.5.0
     # via
     #   -r requirements.in
     #   django-import-export
+threadloop==1.0.2
+    # via jaeger-client
+thrift==0.16.0
+    # via jaeger-client
+tornado==6.4
+    # via
+    #   jaeger-client
+    #   threadloop
 typing-extensions==4.8.0
     # via dj-database-url
 tzdata==2023.3
@@ -95,11 +120,7 @@ xlwt==1.3.0
     # via
     #   -r requirements.in
     #   tablib
-whitenoise
+
 # The following packages are considered to be unsafe in a requirements file:
 # pip
 # setuptools
-django-prometheus
-    # via -r requirements.in
-django-opentracing
-jaeger-client
