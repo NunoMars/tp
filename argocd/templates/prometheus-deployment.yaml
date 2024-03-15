@@ -31,7 +31,7 @@ spec:
         - '--web.console.templates=/etc/prometheus/consoles'
         - '--storage.tsdb.retention.time=200h'
         - '--web.enable-lifecycle'
-        - '--alertmanager.url=http://{{ .Release.Name }}-alertmanager-service.{{ .Values.namespace }}.svc.cluster.local:9093''
+        - '--alertmanager.url=http://{{ .Release.Name }}-alertmanager-service.{{ .Values.namespace }}.svc.cluster.local:9093'
         - '--rule_files=/etc/prometheus/rules/*.rules'
         ports:
       volumes:
