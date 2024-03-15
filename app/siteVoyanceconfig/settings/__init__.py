@@ -26,7 +26,7 @@ REDIS_BD_PASSWORD = os.environ.get("POSTGRES_PASSWORD")
 DEBUG = True  # if ENV == "dev" else False
 JAEGER_AGENT_HOST = os.environ.get("JAEGER_AGENT_HOST", "localhost")
 JAEGER_AGENT_PORT = os.environ.get("JAEGER_AGENT_PORT", 6831)
-JAEGER_SERVICE_NAME = os.environ.get("JAEGER_SERVICE_NAME")
+JAEGER_SERVICE_NAME = os.environ.get("JAEGER_SERVICE_NAME", "site-voyance")
 
 
 ALLOWED_HOSTS = ["*"]
