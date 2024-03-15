@@ -45,6 +45,7 @@ jobs:
 
       - name: Run tests
         run: |
+          cd app
           python manage.py test
 
   qodana:
