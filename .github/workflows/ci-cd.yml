@@ -16,8 +16,8 @@ jobs:
       postgres:
         image: postgres:latest
         env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: nuno
+          POSTGRES_PASSWORD: ${{ secrets.DB_PASSWORD}}
           POSTGRES_DB: VoyanceDB
         ports:
           - 5432:5432
