@@ -16,3 +16,4 @@ efs:
   storage_class: "efs-storage-class"
   access_mode: "ReadWriteMany"
 
+alertmanager_url: "http://alertmanager.monitoring.svc.cluster.local:9093"

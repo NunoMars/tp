@@ -7,11 +7,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ .Release.Name }}-alertmanager-deployment
+      app: {{ .Release.Name }}-alertmanager
   template:
     metadata:
       labels:
-        app: {{ .Release.Name }}-alertmanager-deployment
+        app: {{ .Release.Name }}-alertmanager
     spec:
       containers:
       - name: alertmanager

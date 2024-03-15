@@ -5,7 +5,7 @@ metadata:
   namespace: {{ .Values.namespace }}
 spec:
   selector:
-    app: {{ .Release.Name }}-alertmanager-deployment
+    app: {{ .Release.Name }}-alertmanager
   ports:
   - name: {{ .Release.Name }}-alertmanager
     protocol: TCP

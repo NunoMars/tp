@@ -39,6 +39,4 @@ spec:
       - name: prometheus-config-volume
         configMap:
           name: {{ .Release.Name }}-prometheus-config
-      - name: prometheus-alert-rules
-        configMap:
-          name: {{ .Release.Name }}-prometheus-alert-rules
+
