@@ -24,8 +24,8 @@ REDIS_HOST = os.environ.get("REDIS_HOST")
 REDIS_PORT = os.environ.get("REDIS_PORT")
 REDIS_BD_PASSWORD = os.environ.get("POSTGRES_PASSWORD")
 DEBUG = True  # if ENV == "dev" else False
-JAEGER_AGENT_HOST = os.environ.get("JAEGER_AGENT_HOST")
-JAEGER_AGENT_PORT = os.environ.get("JAEGER_AGENT_PORT")
+JAEGER_AGENT_HOST = os.environ.get("JAEGER_AGENT_HOST", "localhost")
+JAEGER_AGENT_PORT = os.environ.get("JAEGER_AGENT_PORT", 6831)
 JAEGER_SERVICE_NAME = os.environ.get("JAEGER_SERVICE_NAME")
 
 
@@ -212,4 +212,5 @@ config = Config(config=JAEGER_CONFIG, service_name=JAEGER_SERVICE_NAME, validate
 jaeger_tracer = config.initialize_tracer()
 OPENTRACING_TRACE_ALL = True
 OPENTRACING_TRACER = DjangoTracing(jaeger_tracer)
+
 #############################################################
