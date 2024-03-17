@@ -10,7 +10,7 @@ spec:
     app: "{{ .Release.Name }}-back-deployment"
   ports:
     - protocol: TCP
-      port: 30080  # Port d'écoute principal
+      port: 80  # Port sur lequel le service écoute
       targetPort: 5000  # Port sur lequel vos pods écoutent
       nodePort: 30080  # Port NodePort
-  type: NodePort
+  type: LoadBalancer
