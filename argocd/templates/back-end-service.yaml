@@ -10,6 +10,7 @@ spec:
     app: "{{ .Release.Name }}-back-deployment"
   ports:
     - protocol: TCP
+      port: 5000  # Port sur lequel vos pods écoutent
       targetPort: 5000  # Port sur lequel vos pods écoutent
       nodePort: 30080  # Port NodePort
   type: ClusterIP
