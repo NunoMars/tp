@@ -21,7 +21,7 @@ spec:
         - name: localregistrysecret
       containers:
       - name: "{{ .Release.Name }}-back-container"
-        image: "ghcr.io/nunomars/tp/{{ .Values.backendlabel }}:{{ .Values.defaultTag }}"      
+        image: "ghcr.io/nunomars/tp/{{ .Values.backendlabel }}:{{ .Values.defaultTag }}"
         ports:
         - containerPort: 30080
         command:
