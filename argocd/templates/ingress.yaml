@@ -1,19 +1,25 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ .Release.Name }}-back-ingress
+  name: {{ .Release.Name}}-back-ingress
   namespace: {{ .Values.namespace }}
-  labels:
-    app: {{ .Release.Name }}-back-deployment
+  annotations:
+    kubernetes.io/ingress.class: "alb"
+    alb.ingress.kubernetes.io/scheme: "internet-facing"
+    alb.ingress.kubernetes.io/target-type: "ip"
+    alb.ingress.kubernetes.io/load-balancer-attributes: "access_logs.s3.enabled=true,access_logs.s3.bucket=your-access-logs-bucket"
+    alb.ingress.kubernetes.io/tags: "Environment=production,Team=devops"
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:region:account-id:certificate/certificate-id
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
 spec:
   rules:
-  - host: site-voyance.devops.oclock.school
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: {{ .Release.Name }}-back-service
-            port:
-              number: 80
+    - host: site-voyance.devops.oclock.school
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Release.Name }}-back-service
+                port:
+                  number: 80
