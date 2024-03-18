@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}-back-ingress
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ .Release.Name }}-back-deployment
+spec:
+  rules:
+  - host: site-voyance.devops.oclock.school
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ .Release.Name }}-back-service
+            port:
+              number: 80
