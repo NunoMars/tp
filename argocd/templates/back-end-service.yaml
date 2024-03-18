@@ -13,6 +13,5 @@ spec:
       port: 80
       targetPort: 30080
       nodePort: 30080
-  type: NodePort
-  healthCheckNodePort: 30080
+  type: NodePort  
   healthCheckPath: /healthz
