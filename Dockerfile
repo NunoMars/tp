@@ -7,7 +7,7 @@ COPY /app /app/
 RUN pip install --no-cache-dir -r requirements.txt
 
 
-EXPOSE 5000
+EXPOSE 30080
 
 # Commande pour démarrer l'application
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "siteVoyanceconfig.wsgi:application"]
+CMD ["gunicorn", "--bind", "0.0.0.0:30080", "siteVoyanceconfig.wsgi:application"]
