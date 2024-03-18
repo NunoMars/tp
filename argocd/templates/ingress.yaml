@@ -10,7 +10,7 @@ metadata:
     alb.ingress.kubernetes.io/tags: "Environment=production,Team=devops"
     alb.ingress.kubernetes.io/healthcheck-path: "/healthz"
     alb.ingress.kubernetes.io/healthcheck-protocol: "HTTP"
-    alb.ingress.kubernetes.io/certificate-arn: "arn:aws:acm:eu-west-3:339713030032:certificate/2dcc53d1-5e17-422f-994d-ad69868287c5"
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:eu-west-3:339713030032:certificate/d2d74a7e-0fe5-4b82-bb16-c45d9c9ef394
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
 spec:
   rules:
