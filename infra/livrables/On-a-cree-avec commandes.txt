@@ -1,0 +1,50 @@
+terraform cluster apellé "cluster_site_voyance" sous aws
+commandes en local:
+terraform init
+terraform plan
+terraform apply
+terraform destroy
+
+pour utiliser la commande kubctl en local:
+aws eks --region eu-west-3 update-kubeconfig --name cluster_site_voyance
+
+install argocd
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+premier lancement argo afin decreer le compte et le pass
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}"
+ZmMwQmlGVXhQeXp6S2lGMw== atention sous Powershell il faut decode ça base64
+user=admin
+pass=fc0BiFUxPyzzKiF3
+
+
+pour argocd
+kubectl port-forward svc/argocd-server -n argocd 8080:443
+
+
+pour monotoring
+on cree le namesapce monitoring 
+apres
+helm install monitoring  prometheus-community/kube-prometheus-stack -n monitoring
+et on doit changer la config prometheus en applicant 
+kubectl apply -f prometheus-cm.yaml
+et on lance en local montbind:
+
+kubectl port-forward svc/monitoring-grafana 9090:80 -n monitoring
+user=admin
+pass=prom-operator
+
+
+
+pour docprom
+kubectl port-forward svc/dockprom-grafana -n <namespace> 8090:3000
+
+
+Code_qualité sur actions et Codana-clout jetbrains.
+mis sur le repo git hub
+
+monitoring fait sur le cluster
+https://kourou.oclock.io/ressources/recap-quotidien/hati-s14e05-prometheus-grafana-datadog/
+
+l'application a un end point healthz

@@ -1,0 +1,3 @@
+https://medium.com/avmconsulting-blog/encrypting-the-certificate-for-kubernetes-lets-encrypt-805d2bf88b2a
+
+J'ai modifié l'applicationa en ajoutant "django-prometheus" afin de faire remonter toutes les metriques
